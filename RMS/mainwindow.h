@@ -20,7 +20,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QString getLocalIP();
     QString localIP;
     RMSHandler* _RMSHandler;
 

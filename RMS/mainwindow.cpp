@@ -2,14 +2,13 @@
 #include "ui_mainwindow.h"
 #include <QHostInfo>
 #include "socket.h"
+#include <windows.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    localIP = getLocalIP();
     _RMSHandler = new RMSHandler();
     _RMSHandler->SetSocketLisener(this, SLOT(onSocketReadyRead(QString)));
     _RMSHandler->SetNewConnectionListener(this, SLOT(newConnection()));
@@ -24,27 +23,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-QString MainWindow::getLocalIP(){
-    QString hostName = QHostInfo::localHostName();
-    QHostInfo hostInfo = QHostInfo::fromName(hostName);
-    QString localIPqstr = "";
-    QList<QHostAddress> addList = hostInfo.addresses();
-
-    if(!addList.isEmpty()){
-        for(int i=0;i<addList.count();i++){
-            QHostAddress aHost = addList.at(i);
-            if( QAbstractSocket::IPv4Protocol == aHost.protocol() ){
-                localIPqstr = aHost.toString();
-                break;
-            }
-        }
-    }
-    return localIPqstr;
-}
-
 void MainWindow::on_actConnect_triggered(){
     if(!_RMSHandler->IsHost()){
         _RMSHandler->Connect("192.168.56.1",1200);
+        //(2000);
+        qInfo()<<_RMSHandler->IsConnect();
     }
 }
 
@@ -80,7 +63,6 @@ void MainWindow::on_btnSend_clicked(){
     }else{
         ui->plainTextEdit->appendPlainText("未連結");
     }
-
 }
 
 
