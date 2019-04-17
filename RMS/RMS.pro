@@ -29,12 +29,18 @@ SOURCES += \
         main.cpp \
     mainwindow.cpp \
     rmshandler.cpp \
-    socket.cpp
+    socket.cpp \
+    usecase/manage_order.cpp \
+    domain/seat_list.cpp \
+    domain/seat.cpp
 
 HEADERS += \
     mainwindow.h \
     rmshandler.h \
-    socket.h
+    socket.h \
+    usecase/manage_order.h \
+    domain/seat_list.h \
+    domain/seat.h
 
 FORMS += \
     mainwindow.ui
