@@ -11,7 +11,8 @@ HEADERS += \
     test_domain/test_menu.h \
     test_usecase/test_manage_order.h \
     ../../usecase/manage_order.h \
-    ../../domain/seat_list.h
+    ../../domain/seat_list.h \
+    test_usecase/test_show_seat_order.h
 
 SOURCES += \
         main.cpp \
