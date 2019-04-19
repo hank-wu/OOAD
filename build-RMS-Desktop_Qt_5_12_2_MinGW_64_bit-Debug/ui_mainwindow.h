@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -18,6 +19,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,11 +28,16 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
     QPushButton *btnConnect;
-    QPushButton *btnSend;
-    QLineEdit *lineEdit;
-    QPlainTextEdit *plainTextEdit;
     QPushButton *btnHost;
+    QHBoxLayout *horizontalLayout_2;
+    QLineEdit *lineEdit;
+    QPushButton *btnSend;
+    QHBoxLayout *horizontalLayout_4;
+    QPlainTextEdit *plainTextEdit;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -39,28 +46,64 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(418, 318);
+        MainWindow->resize(1121, 715);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
-        btnConnect = new QPushButton(centralWidget);
+        verticalLayoutWidget = new QWidget(centralWidget);
+        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(20, 10, 1071, 651));
+        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        btnConnect = new QPushButton(verticalLayoutWidget);
         btnConnect->setObjectName(QString::fromUtf8("btnConnect"));
-        btnConnect->setGeometry(QRect(70, 10, 101, 51));
-        btnSend = new QPushButton(centralWidget);
-        btnSend->setObjectName(QString::fromUtf8("btnSend"));
-        btnSend->setGeometry(QRect(330, 70, 80, 31));
-        lineEdit = new QLineEdit(centralWidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(20, 70, 301, 31));
-        plainTextEdit = new QPlainTextEdit(centralWidget);
-        plainTextEdit->setObjectName(QString::fromUtf8("plainTextEdit"));
-        plainTextEdit->setGeometry(QRect(30, 110, 351, 151));
-        btnHost = new QPushButton(centralWidget);
+
+        horizontalLayout->addWidget(btnConnect);
+
+        btnHost = new QPushButton(verticalLayoutWidget);
         btnHost->setObjectName(QString::fromUtf8("btnHost"));
-        btnHost->setGeometry(QRect(240, 10, 101, 51));
+
+        horizontalLayout->addWidget(btnHost);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        lineEdit = new QLineEdit(verticalLayoutWidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+
+        horizontalLayout_2->addWidget(lineEdit);
+
+        btnSend = new QPushButton(verticalLayoutWidget);
+        btnSend->setObjectName(QString::fromUtf8("btnSend"));
+
+        horizontalLayout_2->addWidget(btnSend);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        plainTextEdit = new QPlainTextEdit(verticalLayoutWidget);
+        plainTextEdit->setObjectName(QString::fromUtf8("plainTextEdit"));
+
+        horizontalLayout_4->addWidget(plainTextEdit);
+
+
+        verticalLayout->addLayout(horizontalLayout_4);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 418, 25));
+        menuBar->setGeometry(QRect(0, 0, 1121, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -78,8 +121,8 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         btnConnect->setText(QApplication::translate("MainWindow", "\351\200\243\346\216\245", nullptr));
-        btnSend->setText(QApplication::translate("MainWindow", "\347\231\274\351\200\201", nullptr));
         btnHost->setText(QApplication::translate("MainWindow", "\351\226\213\345\247\213\347\233\243\350\201\275", nullptr));
+        btnSend->setText(QApplication::translate("MainWindow", "\347\231\274\351\200\201", nullptr));
     } // retranslateUi
 
 };
