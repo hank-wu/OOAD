@@ -8,6 +8,8 @@ class SeatList
 {
 public:
     SeatList();
+    void refreshList(std::map<int, Seat> *);
+    std::map<int, Seat> * getList();
     int getCount();
 
 private:

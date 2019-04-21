@@ -1,0 +1,10 @@
+release/main.o
+release/mainwindow.o
+release/rmshandler.o
+release/socket.o
+release/manage_order.o
+release/seat_list.o
+release/seat.o
+release/handler.o
+release/moc_mainwindow.o
+release/moc_socket.o

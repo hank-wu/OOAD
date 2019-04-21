@@ -32,7 +32,8 @@ SOURCES += \
     socket.cpp \
     usecase/manage_order.cpp \
     domain/seat_list.cpp \
-    domain/seat.cpp
+    domain/seat.cpp \
+    handler.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     socket.h \
     usecase/manage_order.h \
     domain/seat_list.h \
-    domain/seat.h
+    domain/seat.h \
+    handler.h
 
 FORMS += \
     mainwindow.ui
