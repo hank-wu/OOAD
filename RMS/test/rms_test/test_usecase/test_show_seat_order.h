@@ -12,5 +12,6 @@ TEST(TestShowSeatOrder, first)
 //    ManageOrder * m = new ManageOrder();
 //    ASSERT_EQ(10,m->getSeatCount());
     ShowSeatOrder * sso = new ShowSeatOrder();
+    //AAA001
 }
 #endif // TEST_SHOW_SEAT_ORDER_H
