@@ -1,0 +1,11 @@
+release/gtest-all.o
+release/gmock-all.o
+release/main.o
+release/manage_order.o
+release/seat_list.o
+release/seat.o
+release/meal.o
+release/meal_list.o
+release/order.o
+release/seat_order.o
+release/seat_order_list.o

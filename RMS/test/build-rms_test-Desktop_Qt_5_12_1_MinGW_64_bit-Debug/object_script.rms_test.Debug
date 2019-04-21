@@ -1,0 +1,11 @@
+debug/gtest-all.o
+debug/gmock-all.o
+debug/main.o
+debug/manage_order.o
+debug/seat_list.o
+debug/seat.o
+debug/meal.o
+debug/meal_list.o
+debug/order.o
+debug/seat_order.o
+debug/seat_order_list.o

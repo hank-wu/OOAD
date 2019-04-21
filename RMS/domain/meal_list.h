@@ -12,7 +12,7 @@ public:
     int getNumberOfMeals();
 
 private:
-    std::map<int,Meal *> *_mapMeal;
+    std::map<int,Meal *> *_mapMeal = new std::map<int,Meal *>();
 };
 
 #endif // MEAL_LIST_H

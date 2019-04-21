@@ -1,0 +1,14 @@
+debug/main.o
+debug/mainwindow.o
+debug/rmshandler.o
+debug/socket.o
+debug/manage_order.o
+debug/seat_list.o
+debug/seat.o
+debug/meal.o
+debug/meal_list.o
+debug/order.o
+debug/seat_order.o
+debug/seat_order_list.o
+debug/moc_mainwindow.o
+debug/moc_socket.o

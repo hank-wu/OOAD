@@ -6,6 +6,7 @@ class Seat
 public:
     Seat(int,bool);
     bool isUsed();
+    int getSeatId();
 private:
     bool _used;
     int _id;
