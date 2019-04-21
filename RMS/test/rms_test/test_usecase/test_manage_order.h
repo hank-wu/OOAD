@@ -5,12 +5,12 @@
 #include <gmock/gmock-matchers.h>
 #include "../../../usecase/manage_order.h"
 #include "../../../domain/seat.h"
+#include "../../../domain/seat_list.h"
 #include "../../../domain/meal.h"
 #include "../../../domain/meal_list.h"
 #include "../../../domain/order.h"
 #include "../../../domain/seat_order.h"
 #include "../../../domain/seat_order_list.h"
-
 
 #include <map>
 
@@ -46,6 +46,25 @@ TEST(TestShowSeatOrder, first)
     seatOrderList->add(17,seatOrder_one);
     ASSERT_EQ(1,seatOrderList->getNumberOfSeatOrder());
 
+}
+
+TEST(TestClearSeat, first)
+{
+    Seat * seat_one = new Seat(1,true);
+    ASSERT_EQ(1,seat_one->getSeatId());
+    Seat * seat_two = new Seat(7,true);
+
+    seat_one->changeState();
+    ASSERT_EQ(false,seat_one->isUsed());
+
+    SeatList *seatList = new SeatList();
+    seatList->add(1,seat_one);
+    seatList->add(7,seat_two);
+    ASSERT_EQ(2,seatList->getNumberOfSeat());
+
+    ASSERT_EQ(true,seat_two->isUsed());
+    seatList->clearSeat(7);
+    ASSERT_EQ(false,seat_two->isUsed());
 }
 
 #endif // TEST_MANAGE_ORDER_H
