@@ -21,3 +21,15 @@ void SeatOrder::addOrderItem(Meal *meal, int quantity){
 std::map<int ,OrderItem *> * SeatOrder::getOrderItemList(){
     return _orderItemList;
 }
+
+void SeatOrder::clear(){
+    if(_orderItemList->size() > 0){
+        for(std::map<int ,OrderItem *>::iterator it=_orderItemList->begin();it != _orderItemList->end();it++){
+            delete it->second;
+        }
+        _orderItemList->clear();
+    }
+
+    if(isUsed())
+        changeState();
+}

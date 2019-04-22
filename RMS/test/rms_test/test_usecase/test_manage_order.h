@@ -87,17 +87,13 @@ TEST(TestSeatOrderList,04)
 {
     Meal * meal_one = new Meal(1,"apple","good",10);
     Meal * meal_two = new Meal(2,"banana","yellow",20);
-    SeatOrder * seatOrder = new SeatOrder(1,false);
-    seatOrder->addOrderItem(meal_one,5);
-    seatOrder->addOrderItem(meal_one,3);
-    seatOrder->addOrderItem(meal_two,6);
 
     SeatOrderList * seatOrderList = new SeatOrderList();
     seatOrderList->addOrder(1,meal_one,8);
     seatOrderList->addOrder(1,meal_two,6);
 
     std::map<int,SeatOrder *> *seatOrderList_one;
-    seatOrderList_one = seatOrderList->getSeatOrderList();
+    seatOrderList_one = seatOrderList->getAllSeatOrder();
 
     ASSERT_EQ(true,(*seatOrderList_one)[1]->isUsed());
     SeatOrder *seatOrder_one = (*seatOrderList_one)[1];
@@ -107,6 +103,39 @@ TEST(TestSeatOrderList,04)
 
 }
 
+TEST(TestSeatOrderClear,05)
+{
+    Meal * meal_one = new Meal(1,"apple","good",10);
+    Meal * meal_two = new Meal(2,"banana","yellow",20);
+    SeatOrderList * seatOrderList = new SeatOrderList();
+    seatOrderList->addOrder(1,meal_one,8);
+    seatOrderList->addOrder(1,meal_two,6);
+
+    std::map<int,SeatOrder *> *seatOrderList_one;
+    seatOrderList_one = seatOrderList->getAllSeatOrder();
+    ASSERT_EQ(true,(*seatOrderList_one)[1]->isUsed());
+    seatOrderList->clearSeat(1);
+    ASSERT_EQ(false,(*seatOrderList_one)[1]->isUsed());
+
+}
+
+TEST(TestSeatListTableName,06)
+{
+    SeatList *seatList = new SeatList();
+    std::map<int,Seat *> * seats = new std::map<int,Seat *>();
+    Seat * seat_one = new Seat(1,true,std::string("A1"));
+    Seat * seat_two = new Seat(2,true,std::string("A2"));
+    (*seats)[1] = seat_one;
+    (*seats)[2] = seat_two;
+    seatList->refresh(seats);
+
+    std::map<int,Seat *> * seatsAns;
+    seatsAns = seatList->getAllSeats();
+    ASSERT_EQ(true,(*seatsAns)[1]->isUsed());
+    ASSERT_EQ(std::string("A1"),(*seatsAns)[1]->getTableName());
+    ASSERT_EQ(true,(*seatsAns)[2]->isUsed());
+    ASSERT_EQ(std::string("A2"),(*seatsAns)[2]->getTableName());
+}
 
 /*
 TEST(TestShowSeatOrder, first)

@@ -3,17 +3,21 @@
 SeatOrderList::SeatOrderList()
 {
     for(int i=1;i<=_count;i++)
-        (*_seatOrderList)[i] = new SeatOrder(i,false);
+        (*_seatOrders)[i] = new SeatOrder(i,false);
 }
 
 int SeatOrderList::getNumberOfSeatOrder(){
-    return _seatOrderList->size();
+    return _seatOrders->size();
 }
 
 void SeatOrderList::addOrder(int seatId, Meal *meal, int quantity){
-    (*_seatOrderList)[seatId]->addOrderItem(meal,quantity);
+    (*_seatOrders)[seatId]->addOrderItem(meal,quantity);
 }
 
-std::map<int,SeatOrder *> * SeatOrderList::getSeatOrderList(){
-    return _seatOrderList;
+std::map<int,SeatOrder *> * SeatOrderList::getAllSeatOrder(){
+    return _seatOrders;
+}
+
+void SeatOrderList::clearSeat(int seatId){
+    (*_seatOrders)[seatId]->clear();
 }

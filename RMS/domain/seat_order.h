@@ -12,6 +12,7 @@ public:
     SeatOrder(int,bool);
     void addOrderItem(Meal * meal, int quantity);
     std::map<int ,OrderItem *> * getOrderItemList();
+    void clear();
 
 private:
     std::map<int ,OrderItem *> *_orderItemList = new std::map<int ,OrderItem *>();

@@ -9,11 +9,12 @@ public:
     SeatOrderList();
     int getNumberOfSeatOrder();
     void addOrder(int seatId,Meal *meal,int quantity);
-    std::map<int,SeatOrder *> * getSeatOrderList();
+    std::map<int,SeatOrder *> * getAllSeatOrder();
+    void clearSeat(int seatId);
 
 private:
     const int _count = 10;
-    std::map<int,SeatOrder *> *_seatOrderList = new std::map<int,SeatOrder *>();
+    std::map<int,SeatOrder *> *_seatOrders = new std::map<int,SeatOrder *>();
 };
 
 #endif // SEAT_ORDER_LIST_H

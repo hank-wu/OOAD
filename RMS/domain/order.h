@@ -1,17 +1,18 @@
 #ifndef ORDER_H
 #define ORDER_H
 
-#include "meal_list.h"
+#include "order_item.h"
+#include "seat.h"
 
 class Order
 {
 public:
-    Order(int id,MealList *mealList);
+    Order(Seat *seat);
     int getNumberOfMeals();
 
 private:
-    int _id;
-    MealList *_mealList;
+    Seat *_seat;
+    OrderItem * _orderItem;
 };
 
 #endif // ORDER_H
