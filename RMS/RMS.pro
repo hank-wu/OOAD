@@ -39,7 +39,9 @@ SOURCES += \
     domain/seat_order.cpp \
     domain/seat_order_list.cpp \
     domain/menu.cpp \
-    domain/order_item.cpp
+    domain/order_item.cpp \
+    domain/bill.cpp \
+    domain/receipt.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -54,7 +56,9 @@ HEADERS += \
     domain/seat_order.h \
     domain/seat_order_list.h \
     domain/menu.h \
-    domain/order_item.h
+    domain/order_item.h \
+    domain/bill.h \
+    domain/receipt.h
 
 FORMS += \
     mainwindow.ui

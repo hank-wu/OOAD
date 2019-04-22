@@ -10,6 +10,7 @@ public:
     Meal * getMeal();
     int getQuantity();
     void addQuantity(int count);
+    int subtotal();
 
 private:
     Meal * _meal;

@@ -13,6 +13,8 @@
 #include "../../../domain/seat_order_list.h"
 #include "../../../domain/menu.h"
 #include "../../../domain/order_item.h"
+#include "../../../domain/bill.h"
+#include "../../../domain/receipt.h"
 
 #include <map>
 
@@ -135,6 +137,66 @@ TEST(TestSeatListTableName,06)
     ASSERT_EQ(std::string("A1"),(*seatsAns)[1]->getTableName());
     ASSERT_EQ(true,(*seatsAns)[2]->isUsed());
     ASSERT_EQ(std::string("A2"),(*seatsAns)[2]->getTableName());
+}
+
+TEST(TestOrder, 01)
+{
+    Seat * seat_one = new Seat(1,true,std::string("A1"));
+    Order * order = new Order(seat_one);
+    ASSERT_EQ(0,order->orderCount());
+    Meal * meal_one = new Meal(1,"apple","good",10);
+    order->add(meal_one,20);
+    ASSERT_EQ(20,order->orderCount());
+    ASSERT_EQ(200, order->getAmount());
+}
+
+TEST(TestBill,099)
+{
+    Bill * bill = new Bill(1000);
+    bill->pay(1500);
+    ASSERT_EQ(500,bill->getBalance());
+}
+
+TEST(TestOrderPay,098)
+{
+    Seat * seat_one = new Seat(1,true,std::string("A1"));
+    Order * order = new Order(seat_one);
+    ASSERT_EQ(0,order->orderCount());
+    Meal * meal_one = new Meal(1,"apple","good",10);
+    order->add(meal_one,20);
+    ASSERT_EQ(20,order->orderCount());
+    ASSERT_EQ(200, order->getAmount());
+
+    order->createBill();
+    ASSERT_EQ(true,order->pay(230));
+    ASSERT_EQ(30,order->getBalance());
+
+}
+
+TEST(TestOrderReceipt,097)
+{
+    Seat * seat_one = new Seat(1,true,std::string("A1"));
+    Order * order = new Order(seat_one);
+    ASSERT_EQ(0,order->orderCount());
+    Meal * meal_one = new Meal(1,"apple","good",10);
+    order->add(meal_one,20);
+    ASSERT_EQ(20,order->orderCount());
+    ASSERT_EQ(200, order->getAmount());
+
+    order->createBill();
+    ASSERT_EQ(true,order->pay(230));
+    ASSERT_EQ(30,order->getBalance());
+
+    Receipt * receipt = order->getReceipt();
+    ASSERT_EQ("apple  200\n",receipt->content());
+}
+
+TEST(TestReceipt,096)
+{
+    Receipt * receipt = new Receipt("A1");
+    receipt->setItem("apple",200);
+    receipt->setItem("banana",125);
+    ASSERT_EQ("apple  200\nbanana  125\n",receipt->content());
 }
 
 /*

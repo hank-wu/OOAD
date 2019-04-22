@@ -16,3 +16,7 @@ int OrderItem::getQuantity(){
 void OrderItem::addQuantity(int count){
     _quantity += count;
 }
+
+int OrderItem::subtotal(){
+    return _quantity * _meal->getPrice();
+}
