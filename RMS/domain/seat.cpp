@@ -14,8 +14,5 @@ int Seat::getSeatId(){
 }
 
 void Seat::changeState(){
-    if(_used)
-        _used = false;
-    else
-        _used = true;
+    _used = !_used;
 }

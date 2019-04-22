@@ -1,19 +1,20 @@
-#ifndef MEAL_LIST_H
-#define MEAL_LIST_H
+#ifndef MENU_H
+#define MENU_H
 
 #include "meal.h"
 #include <map>
 
-class MealList
+class Menu
 {
 public:
-    MealList();
+    Menu();
     void add(int id,Meal *meal);
     int getNumberOfMeals();
-    void set(std::map<int,Meal *> *MealList);
+    void refresh(std::map<int,Meal *> *MealList);
+    std::map<int,Meal *> * getMenu();
 
 private:
     std::map<int,Meal *> *_mapMeal = new std::map<int,Meal *>();
 };
 
-#endif // MEAL_LIST_H
+#endif // MENU_H

@@ -39,12 +39,12 @@ TEST(TestShowSeatOrder, first)
     Order * order_one = new Order(115,mealList_one);
     ASSERT_EQ(2,order_one->getNumberOfMeals());//test Order
 
-    SeatOrder * seatOrder_one = new SeatOrder(seat_one,order_one);
+    /*SeatOrder * seatOrder_one = new SeatOrder(seat_one,order_one);
     ASSERT_EQ(1,seatOrder_one->getSeatId());
 
     SeatOrderList * seatOrderList = new SeatOrderList();
     seatOrderList->add(17,seatOrder_one);
-    ASSERT_EQ(1,seatOrderList->getNumberOfSeatOrder());
+    ASSERT_EQ(1,seatOrderList->getNumberOfSeatOrder());*/
 
 }
 

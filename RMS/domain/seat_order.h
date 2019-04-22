@@ -7,12 +7,14 @@
 class SeatOrder
 {
 public:
-    SeatOrder(Seat *seat,Order *order);
+    SeatOrder(Seat *seat);
     int getSeatId();
+    void addOrderItem(Meal *, int);
 
 private:
     Seat *_seat;
     Order *_order;
+    OrderItem//meal number
     //std::map<Seat *,Order *> *_mapSeatOrder = new std::map<Seat *,Order *>();
 };
 

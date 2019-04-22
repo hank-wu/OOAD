@@ -2,15 +2,12 @@
 
 SeatList::SeatList()
 {
-
+    for(int i=1;i<=_count;i++)
+        (*_seats)[i] = new Seat(i,false);
 }
 
 int SeatList::getCount(){
     return _count;
-}
-
-void SeatList::add(int id, Seat *seat){
-    (*_seats)[id] = seat;
 }
 
 int SeatList::getNumberOfSeat(){
@@ -19,4 +16,17 @@ int SeatList::getNumberOfSeat(){
 
 void SeatList::clearSeat(int id){
     (*_seats)[id]->changeState();
+}
+
+void SeatList::refresh(int id, Seat *seat){
+    if((*_seats)[id]->isUsed() != seat->isUsed())
+        (*_seats)[id]->changeState();
+}
+
+void SeatList::refresh(std::map<int, Seat *> *seats){
+    for(std::map<int,Seat *>::iterator it= _seats->begin();it != _seats->end(); ++it){
+        int id = it->first;
+        if(it->second->isUsed() != (*seats)[id]->isUsed())
+            it->second->changeState();
+    }
 }

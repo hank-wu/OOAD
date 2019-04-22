@@ -37,7 +37,8 @@ SOURCES += \
     domain/meal_list.cpp \
     domain/order.cpp \
     domain/seat_order.cpp \
-    domain/seat_order_list.cpp
+    domain/seat_order_list.cpp \
+    domain/menu.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -50,7 +51,8 @@ HEADERS += \
     domain/meal_list.h \
     domain/order.h \
     domain/seat_order.h \
-    domain/seat_order_list.h
+    domain/seat_order_list.h \
+    domain/menu.h
 
 FORMS += \
     mainwindow.ui

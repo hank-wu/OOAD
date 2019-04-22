@@ -9,9 +9,11 @@ class SeatList
 public:
     SeatList();
     int getCount();
-    void add(int id,Seat *seat);
     int getNumberOfSeat();
-    void clearSeat(int id);
+    //void clearSeat(int id);
+    void refresh(std::map<int,Seat *> *seats);
+    void refresh(int id, Seat *seat);
+    void getSeat(int id);
 
 private:
     const int _count = 10;
