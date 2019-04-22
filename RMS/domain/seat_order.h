@@ -2,20 +2,19 @@
 #define SEAT_ORDER_H
 
 #include "seat.h"
-#include "order.h"
+#include "order_item.h"
+#include "meal.h"
+#include <map>
 
-class SeatOrder
+class SeatOrder : public Seat
 {
 public:
-    SeatOrder(Seat *seat);
-    int getSeatId();
-    void addOrderItem(Meal *, int);
+    SeatOrder(int,bool);
+    void addOrderItem(Meal * meal, int quantity);
+    std::map<int ,OrderItem *> * getOrderItemList();
 
 private:
-    Seat *_seat;
-    Order *_order;
-    OrderItem//meal number
-    //std::map<Seat *,Order *> *_mapSeatOrder = new std::map<Seat *,Order *>();
+    std::map<int ,OrderItem *> *_orderItemList = new std::map<int ,OrderItem *>();
 };
 
 #endif // SEAT_ORDER_H

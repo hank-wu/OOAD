@@ -19,6 +19,8 @@ HEADERS += \
         ../../domain/order.h   \
         ../../domain/seat_order.h   \
         ../../domain/seat_order_list.h   \
+        ../../domain/menu.h   \
+        ../../domain/order_item.h   \
 
 
 SOURCES += \
@@ -31,3 +33,5 @@ SOURCES += \
         ../../domain/order.cpp   \
         ../../domain/seat_order.cpp   \
         ../../domain/seat_order_list.cpp   \
+        ../../domain/menu.cpp   \
+        ../../domain/order_item.cpp   \

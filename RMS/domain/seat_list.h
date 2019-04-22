@@ -10,10 +10,9 @@ public:
     SeatList();
     int getCount();
     int getNumberOfSeat();
-    //void clearSeat(int id);
     void refresh(std::map<int,Seat *> *seats);
     void refresh(int id, Seat *seat);
-    void getSeat(int id);
+    std::map<int,Seat *> * getAllSeats();
 
 private:
     const int _count = 10;

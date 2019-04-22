@@ -1,7 +1,7 @@
 #include "meal.h"
 
-Meal::Meal(string name,string description,int price):
-    _name(name),_description(description),_price(price)
+Meal::Meal(int id,string name,string description,int price):
+    _id(id),_name(name),_description(description),_price(price)
 {
 
 }
@@ -16,4 +16,8 @@ string Meal::getDescription(){
 
 int Meal::getPrice(){
     return _price;
+}
+
+int Meal::getId(){
+    return _id;
 }

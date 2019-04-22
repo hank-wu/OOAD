@@ -9,3 +9,5 @@ release/meal_list.o
 release/order.o
 release/seat_order.o
 release/seat_order_list.o
+release/menu.o
+release/order_item.o

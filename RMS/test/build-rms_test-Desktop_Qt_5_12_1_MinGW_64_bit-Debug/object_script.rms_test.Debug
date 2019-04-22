@@ -9,3 +9,5 @@ debug/meal_list.o
 debug/order.o
 debug/seat_order.o
 debug/seat_order_list.o
+debug/menu.o
+debug/order_item.o

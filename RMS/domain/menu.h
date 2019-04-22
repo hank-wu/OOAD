@@ -8,13 +8,13 @@ class Menu
 {
 public:
     Menu();
-    void add(int id,Meal *meal);
     int getNumberOfMeals();
     void refresh(std::map<int,Meal *> *MealList);
     std::map<int,Meal *> * getMenu();
+    Meal * getMeal(int id);
 
 private:
-    std::map<int,Meal *> *_mapMeal = new std::map<int,Meal *>();
+    std::map<int,Meal *> *_mealList = new std::map<int,Meal *>();
 };
 
 #endif // MENU_H

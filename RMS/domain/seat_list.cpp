@@ -14,10 +14,6 @@ int SeatList::getNumberOfSeat(){
     return _seats->size();
 }
 
-void SeatList::clearSeat(int id){
-    (*_seats)[id]->changeState();
-}
-
 void SeatList::refresh(int id, Seat *seat){
     if((*_seats)[id]->isUsed() != seat->isUsed())
         (*_seats)[id]->changeState();
@@ -29,4 +25,8 @@ void SeatList::refresh(std::map<int, Seat *> *seats){
         if(it->second->isUsed() != (*seats)[id]->isUsed())
             it->second->changeState();
     }
+}
+
+std::map<int,Seat *> * SeatList::getAllSeats(){
+    return _seats;
 }

@@ -7,11 +7,13 @@ class SeatOrderList
 {
 public:
     SeatOrderList();
-    void add(int id,SeatOrder *seatOrder);
     int getNumberOfSeatOrder();
+    void addOrder(int seatId,Meal *meal,int quantity);
+    std::map<int,SeatOrder *> * getSeatOrderList();
 
 private:
-    std::map<int,SeatOrder *> *_mapSeatOrderList = new std::map<int,SeatOrder *>();
+    const int _count = 10;
+    std::map<int,SeatOrder *> *_seatOrderList = new std::map<int,SeatOrder *>();
 };
 
 #endif // SEAT_ORDER_LIST_H

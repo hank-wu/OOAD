@@ -7,15 +7,17 @@ using namespace std;
 class Meal
 {
 public:
-    Meal(string,string,int);
+    Meal(int,string,string,int);
     string getName();
     string getDescription();
     int getPrice();
+    int getId();
 
 private:
     string _name;
     string _description;
     int _price;
+    int _id;
 };
 
 #endif // MEAL_H
