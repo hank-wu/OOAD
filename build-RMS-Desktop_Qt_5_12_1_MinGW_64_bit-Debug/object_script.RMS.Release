@@ -10,5 +10,9 @@ release/meal_list.o
 release/order.o
 release/seat_order.o
 release/seat_order_list.o
+release/menu.o
+release/order_item.o
+release/bill.o
+release/receipt.o
 release/moc_mainwindow.o
 release/moc_socket.o

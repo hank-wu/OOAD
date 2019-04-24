@@ -4,8 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-QT       += network
+QT       += core gui    \
+            network \
+            sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -41,7 +42,9 @@ SOURCES += \
     domain/menu.cpp \
     domain/order_item.cpp \
     domain/bill.cpp \
-    domain/receipt.cpp
+    domain/receipt.cpp \
+    dao/menu_dao.cpp \
+    dao/seat_dao.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -58,7 +61,9 @@ HEADERS += \
     domain/menu.h \
     domain/order_item.h \
     domain/bill.h \
-    domain/receipt.h
+    domain/receipt.h \
+    dao/menu_dao.h \
+    dao/seat_dao.h
 
 FORMS += \
     mainwindow.ui

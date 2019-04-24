@@ -13,3 +13,5 @@ release/menu.o
 release/order_item.o
 release/bill.o
 release/receipt.o
+release/menu_dao.o
+release/seat_dao.o

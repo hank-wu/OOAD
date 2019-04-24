@@ -13,3 +13,5 @@ debug/menu.o
 debug/order_item.o
 debug/bill.o
 debug/receipt.o
+debug/menu_dao.o
+debug/seat_dao.o

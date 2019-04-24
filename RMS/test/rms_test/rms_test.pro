@@ -1,10 +1,13 @@
 include(gtest_dependency.pri)
 
+QT  += core \
+        sql
+
 TEMPLATE = app
 CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG += thread
-CONFIG -= qt
+#CONFIG -= qt
 
 HEADERS += \
         tst_unit_test.h \
@@ -23,6 +26,10 @@ HEADERS += \
         ../../domain/order_item.h   \
         ../../domain/bill.h   \
         ../../domain/receipt.h   \
+        ../../dao/menu_dao.h   \
+        test_dao/test_menu_dao.h    \
+        ../../dao/seat_dao.h   \
+    test_dao/test_seat_dao.h
 
 
 SOURCES += \
@@ -39,3 +46,5 @@ SOURCES += \
         ../../domain/order_item.cpp   \
         ../../domain/bill.cpp   \
         ../../domain/receipt.cpp   \
+        ../../dao/menu_dao.cpp   \
+        ../../dao/seat_dao.cpp   \
