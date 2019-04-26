@@ -13,6 +13,7 @@ public:
     void refresh(std::map<int,Seat *> *seats);
     void refresh(int id, Seat *seat);
     std::map<int,Seat *> * getAllSeats();
+    Seat * getSeat(int seatId);
 
 
 private:

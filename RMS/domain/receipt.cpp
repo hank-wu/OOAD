@@ -22,3 +22,7 @@ std::string Receipt::content(){
     }
     return content;
 }
+
+std::string Receipt::getTableName(){
+    return _tableName;
+}

@@ -44,7 +44,8 @@ SOURCES += \
     domain/bill.cpp \
     domain/receipt.cpp \
     dao/menu_dao.cpp \
-    dao/seat_dao.cpp
+    dao/seat_dao.cpp \
+    domain/order_pair.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -63,7 +64,8 @@ HEADERS += \
     domain/bill.h \
     domain/receipt.h \
     dao/menu_dao.h \
-    dao/seat_dao.h
+    dao/seat_dao.h \
+    domain/order_pair.h
 
 FORMS += \
     mainwindow.ui

@@ -7,6 +7,8 @@
 #include "seat.h"
 #include "bill.h"
 #include "receipt.h"
+#include "order_pair.h"
+#include <vector>
 
 class Order
 {
@@ -19,7 +21,8 @@ public:
     bool pay(int amount);
     int getBalance();
     Receipt * getReceipt();
-
+    int getSeatId();
+    std::vector<OrderPair> * getOrderPair();
 
 private:
     Seat *_seat;

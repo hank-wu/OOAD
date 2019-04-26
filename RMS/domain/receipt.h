@@ -12,6 +12,7 @@ public:
     Receipt(std::string tableName);
     void setItem(std::string mealName,int subtotal);
     std::string content();
+    std::string getTableName();
 private:
     std::string _tableName;
     std::vector<std::string> _mealName;
