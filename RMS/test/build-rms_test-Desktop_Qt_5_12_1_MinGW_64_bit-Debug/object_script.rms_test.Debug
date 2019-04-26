@@ -15,3 +15,7 @@ debug/bill.o
 debug/receipt.o
 debug/menu_dao.o
 debug/seat_dao.o
+debug/order_pair.o
+debug/rmshandler.o
+debug/socket.o
+debug/moc_socket.o

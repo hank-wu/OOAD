@@ -15,3 +15,7 @@ release/bill.o
 release/receipt.o
 release/menu_dao.o
 release/seat_dao.o
+release/order_pair.o
+release/rmshandler.o
+release/socket.o
+release/moc_socket.o

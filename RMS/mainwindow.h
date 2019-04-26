@@ -1,10 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+//#include "staff_manage.h"
+#include "login_page.h"
 #include <QMainWindow>
-#include <QTcpSocket>
-#include <QAbstractSocket>
 #include "rmshandler.h"
+#include "./dao/menu_dao.h"
+#include "./dao/seat_dao.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,20 +18,20 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+private slots:
+    void on_btnCustomer_clicked();
+    void on_btnStaff_clicked();
+    void on_btnBoss_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QString localIP;
-    RMSHandler* _RMSHandler;
+//    StaffManage sm;
+    LoginPage * lg;
+//    CustomerManage cm;
+    RMSHandler * _rmsHandler;
 
-private slots:
-    void newConnection();
-    void onConnected();
-    void onDisconnected();
-    void onSocketReadyRead(QString);
-    void on_actConnect_triggered();
-    void on_actHost_triggered();
-    void on_btnSend_clicked();
+
+
 };
 
 #endif // MAINWINDOW_H

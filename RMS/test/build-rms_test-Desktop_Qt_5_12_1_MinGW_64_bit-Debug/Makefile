@@ -235,6 +235,7 @@ Makefile: ../rms_test/rms_test.pro C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/win3
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/resources.prf \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/moc.prf \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/win32/opengl.prf \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/uic.prf \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/qmake_use.prf \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/file_copies.prf \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/testcase_targets.prf \
@@ -242,8 +243,10 @@ Makefile: ../rms_test/rms_test.pro C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/win3
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/yacc.prf \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/lex.prf \
 		../rms_test/rms_test.pro \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Widgets.prl \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Gui.prl \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Sql.prl \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Network.prl \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile ..\rms_test\rms_test.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/spec_pre.prf:
@@ -418,6 +421,7 @@ C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/qt.prf:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/resources.prf:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/moc.prf:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/win32/opengl.prf:
+C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/uic.prf:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/qmake_use.prf:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/file_copies.prf:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/testcase_targets.prf:
@@ -425,8 +429,10 @@ C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/exceptions.prf:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/yacc.prf:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/mkspecs/features/lex.prf:
 ../rms_test/rms_test.pro:
+C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Widgets.prl:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Gui.prl:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Sql.prl:
+C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Network.prl:
 C:/Qt/Qt5.12.1/5.12.1/mingw73_64/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\rms_test\rms_test.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

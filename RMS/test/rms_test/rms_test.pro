@@ -1,7 +1,10 @@
 include(gtest_dependency.pri)
 
 QT  += core \
-        sql
+        sql \
+        network \
+        gui \
+        widgets \
 
 TEMPLATE = app
 CONFIG += console c++11
@@ -29,7 +32,11 @@ HEADERS += \
         ../../dao/menu_dao.h   \
         test_dao/test_menu_dao.h    \
         ../../dao/seat_dao.h   \
-    test_dao/test_seat_dao.h
+        test_dao/test_seat_dao.h \
+    test_controller/test_rms_handler.h  \
+        ../../domain/order_pair.h   \
+        ../../rmshandler.h   \
+        ../../socket.h   \
 
 
 SOURCES += \
@@ -48,3 +55,6 @@ SOURCES += \
         ../../domain/receipt.cpp   \
         ../../dao/menu_dao.cpp   \
         ../../dao/seat_dao.cpp   \
+        ../../domain/order_pair.cpp   \
+        ../../rmshandler.cpp   \
+        ../../socket.cpp   \

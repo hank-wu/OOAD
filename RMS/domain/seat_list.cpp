@@ -31,3 +31,7 @@ void SeatList::refresh(std::map<int, Seat *> *seats){
 std::map<int,Seat *> * SeatList::getAllSeats(){
     return _seats;
 }
+
+Seat * SeatList::getSeat(int seatId){
+    return (*_seats)[seatId];
+}

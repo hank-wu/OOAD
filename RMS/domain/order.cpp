@@ -59,3 +59,17 @@ Receipt * Order::getReceipt(){
     }
 
 }
+
+int Order::getSeatId(){
+    return _seat->getSeatId();
+}
+
+std::vector<OrderPair> * Order::getOrderPair(){
+    std::vector<OrderPair> * orderPairList = new std::vector<OrderPair>();
+    for(std::map<int, OrderItem*>::iterator it=_orderItemList->begin();it != _orderItemList->end();it++){
+        Meal * meal = it->second->getMeal();
+        OrderPair orderPair(meal->getId(),it->second->getQuantity());
+        orderPairList->push_back(orderPair);
+    }
+    return orderPairList;
+}
