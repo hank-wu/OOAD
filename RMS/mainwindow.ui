@@ -6,64 +6,70 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1121</width>
-    <height>715</height>
+    <width>443</width>
+    <height>310</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QPushButton" name="btnBoss">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>1071</width>
-      <height>651</height>
+      <x>290</x>
+      <y>40</y>
+      <width>111</width>
+      <height>191</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="btnConnect">
-         <property name="text">
-          <string>連接</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnHost">
-         <property name="text">
-          <string>開始監聽</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLineEdit" name="lineEdit"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnSend">
-         <property name="text">
-          <string>發送</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
-       <item>
-        <widget class="QPlainTextEdit" name="plainTextEdit"/>
-       </item>
-      </layout>
-     </item>
-    </layout>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Boss</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnStaff">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>40</y>
+      <width>101</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Staff</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnCustomer">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>38</y>
+      <width>101</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Customer</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -71,8 +77,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1121</width>
-     <height>21</height>
+     <width>443</width>
+     <height>17</height>
     </rect>
    </property>
   </widget>

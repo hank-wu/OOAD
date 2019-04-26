@@ -45,7 +45,10 @@ SOURCES += \
     domain/receipt.cpp \
     dao/menu_dao.cpp \
     dao/seat_dao.cpp \
-    domain/order_pair.cpp
+    domain/order_pair.cpp \
+    customer_manage.cpp \
+    login_page.cpp \
+    dialog.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -65,10 +68,16 @@ HEADERS += \
     domain/receipt.h \
     dao/menu_dao.h \
     dao/seat_dao.h \
-    domain/order_pair.h
+    domain/order_pair.h \
+    customer_manage.h \
+    login_page.h \
+    dialog.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    customer_manage.ui \
+    login_page.ui \
+    dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
