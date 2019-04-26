@@ -8,7 +8,7 @@
 #include <iostream>
 #include <QDebug>
 
-TEST(TestSeatDao, 01)
+TEST(TestSeatDao, getSeatList)
 {
     SeatDao * seatDao = new SeatDao("rms.db");
     ASSERT_EQ("rms.db",seatDao->getPath());
@@ -19,6 +19,20 @@ TEST(TestSeatDao, 01)
         ASSERT_EQ("打開資料庫失敗",error);
     }
     ASSERT_EQ(true,(*seatList)[1]->isUsed());
+
+}
+
+TEST(TestSeatDao, getSeat)
+{
+    SeatDao * seatDao = new SeatDao("rms.db");
+    ASSERT_EQ("rms.db",seatDao->getPath());
+    Seat * seat;
+    try {
+        seat = seatDao->getSeat(4);
+    } catch (std::string error) {
+        ASSERT_EQ("打開資料庫失敗",error);
+    }
+    ASSERT_EQ(4,seat->getSeatId());
 
 }
 

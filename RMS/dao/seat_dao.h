@@ -13,6 +13,7 @@ public:
     SeatDao(string path);
     string getPath();
     std::map<int,Seat *> * getSeatList();
+    Seat * getSeat(int inputId);
 private:
     string _path;
 

@@ -52,5 +52,37 @@ std::map<int,Seat *> * SeatDao::getSeatList(){
         (*seatList)[id] = seat;
     }
 
+    mydb.close();
     return seatList;
+}
+
+Seat * SeatDao::getSeat(int inputId){
+
+    Seat * seat = nullptr;
+    QSqlDatabase mydb;
+    QString bFile = QString(QString::fromLocal8Bit(_path.c_str()));
+    mydb = QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName(bFile);
+    if(!mydb.open()){
+        throw std::string("打開資料庫失敗");
+    }
+    QSqlTableModel tableModel(nullptr,mydb);
+    QSqlQuery query;
+    QString queryStr = "select * from seat where id = " + QString::number(inputId);
+    query.exec(queryStr);
+
+    while(query.next())
+    {
+        int fieldId = query.record().indexOf("id");
+        int fieldUsed = query.record().indexOf("used");
+
+        int id = query.value(fieldId).toInt();
+        int used = query.value(fieldUsed).toInt();
+
+        std::cout<<"id = "<<id<<std::endl;
+        seat = new Seat(id,used);
+    }
+
+    mydb.close();
+    return seat;
 }

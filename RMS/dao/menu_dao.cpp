@@ -55,6 +55,7 @@ std::map<int,Meal *> * MenuDao::getMealList(){
         (*mealList)[id] = meal;
     }
 
+    mydb.close();
     return mealList;
 }
 
