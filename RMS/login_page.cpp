@@ -8,7 +8,7 @@ LoginPage::LoginPage(QWidget *parent,RMSHandler * rmsHandler) :
     _rmsHandler(rmsHandler)
 {
     ui->setupUi(this);
-    connect(ui->connectButton,SIGNAL(pressed()),this,SLOT(showCustomerManagePage()));
+    connect(ui->connectButton,SIGNAL(clicked()),this,SLOT(showCustomerManagePage()));
 
 }
 
@@ -19,11 +19,9 @@ LoginPage::~LoginPage()
 void LoginPage::showCustomerManagePage()
 {
     CustomerManage *cm=new CustomerManage(nullptr,_rmsHandler);
-
-
-
     //this->hide();
     this->close();
+    parentWidget()->show();
     cm->show();
 
 }

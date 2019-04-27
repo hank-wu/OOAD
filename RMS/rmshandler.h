@@ -27,6 +27,7 @@ public:
     std::map<int,Seat *> * showSeatList();
     std::map<int,Meal *> * showMenu();
     void createOrder(int seatId);
+    void cancelOrder();
     void enterOrderItem(int mealId,int amount);
     void createBill();
     bool pay(int money);

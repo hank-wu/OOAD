@@ -11,7 +11,7 @@ CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
     init();
     connect(ui->ensureBtn,SIGNAL(pressed()),this,SLOT(ensureSeat()));
     connect(ui->seatCombo,SIGNAL(activated(int)),this,SLOT(clickedaction(int)));
-    connect(ui->addBtn,SIGNAL(pressed()),this,SLOT(addToTable()));
+    //connect(ui->addBtn,SIGNAL(pressed()),this,SLOT(addToTable()));
     connect(ui->payBtn,SIGNAL(pressed()),this,SLOT(showTotalAmount()));
 
 
@@ -27,8 +27,8 @@ void CustomerManage::ensureSeat()
         ui->seatCombo->setDisabled(true);
         ui->mealCombo->setDisabled(false);
         ui->amountCombo->setDisabled(false);
-        ui->addBtn->setDisabled(false);
-        ui->deleBtn->setDisabled(false);
+        //ui->addBtn->setDisabled(false);
+        //ui->deleBtn->setDisabled(false);
     }
 }
 void CustomerManage::clickedaction(int currentIndex)
@@ -38,9 +38,9 @@ void CustomerManage::clickedaction(int currentIndex)
 void CustomerManage::addToTable()
 {
        ui->payBtn->setDisabled(false);
-       ui->tableWidget->insertRow (ui-> tableWidget->rowCount());
-       ui->tableWidget->setItem( i,0,new QTableWidgetItem(ui->mealCombo->currentText()));
-       ui->tableWidget->setItem( i,1,new QTableWidgetItem(ui->amountCombo->currentText()));
+       //ui->tableWidget->insertRow (ui-> tableWidget->rowCount());
+       //ui->tableWidget->setItem( i,0,new QTableWidgetItem(ui->mealCombo->currentText()));
+       //ui->tableWidget->setItem( i,1,new QTableWidgetItem(ui->amountCombo->currentText()));
        i++;
 }
 
@@ -49,6 +49,7 @@ void CustomerManage::showTotalAmount()
    Dialog *d=new Dialog;
    d->exec();
    init();
+   delete d;
 }
 ////        switch (ui->seatCombo->currentIndex()) {
 ////        case 1:
@@ -92,12 +93,12 @@ void  CustomerManage::init()
     ui->mealCombo->setDisabled(false);
      ui->seatCombo->setDisabled(false);
     ui->amountCombo->setDisabled(true);
-    ui->addBtn->setDisabled(true);
-    ui->deleBtn->setDisabled(true);
+    //ui->addBtn->setDisabled(true);
+    //ui->deleBtn->setDisabled(true);
     ui->payBtn->setDisabled(true);
     ui->mealCombo->setCurrentIndex(0);
     ui->seatCombo->setCurrentIndex(0);
     ui->amountCombo->setCurrentIndex(0);
-    ui-> tableWidget->setRowCount(0);
+    //ui-> tableWidget->setRowCount(0);
     i=0;
 }

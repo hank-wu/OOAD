@@ -69,6 +69,9 @@ void RMSHandler::createOrder(int seatId){
     _order = new Order(seat);
 }
 
+void RMSHandler::cancelOrder(){
+    delete _order;
+}
 void RMSHandler::enterOrderItem(int mealId, int amount){
     Meal * meal = _menu->getMeal(mealId);
     _order->add(meal,amount);
