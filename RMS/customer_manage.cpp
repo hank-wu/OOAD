@@ -1,7 +1,8 @@
 #include "customer_manage.h"
 #include "ui_customer_manage.h"
 #include "dialog.h"
-#include <QtSql/QtSql>
+#include <QtDebug>
+
 CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
     QWidget(parent),
     ui(new Ui::CustomerManage),
@@ -9,18 +10,37 @@ CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
 {
     ui->setupUi(this);
     init();
-    connect(ui->ensureBtn,SIGNAL(pressed()),this,SLOT(ensureSeat()));
+    connect(ui->ensureBtn,SIGNAL(clicked()),this,SLOT(ensureSeat()));
     connect(ui->seatCombo,SIGNAL(activated(int)),this,SLOT(clickedaction(int)));
-    //connect(ui->addBtn,SIGNAL(pressed()),this,SLOT(addToTable()));
-    connect(ui->payBtn,SIGNAL(pressed()),this,SLOT(showTotalAmount()));
+    connect(ui->enterOrderBtn,SIGNAL(clicked()),this,SLOT(addToTable()));
+    connect(ui->payBtn,SIGNAL(clicked()),this,SLOT(showTotalAmount()));
+    rmsHandler->refreshMenu();
+    rmsHandler->refreshSeatList();
 
-
+    //reset menu
+    _mealList = rmsHandler->showMenu();
+    int index = 0;
+    for(std::map<int, Meal * >::iterator it = _mealList->begin(); it != _mealList->end();it++){
+        ui->menuTable->insertRow(ui->menuTable->rowCount());
+        qDebug()<<"test"<<ui->menuTable->rowCount();
+        QString name = QString::fromLocal8Bit(it->second->getName().c_str());
+        QString price = QString::number(it->second->getPrice());
+        QString description = QString::fromLocal8Bit(it->second->getDescription().c_str());
+        ui->menuTable->setItem(index,0,new QTableWidgetItem(name));
+        ui->menuTable->setItem(index,1,new QTableWidgetItem(price));
+        ui->menuTable->setItem(index,2,new QTableWidgetItem(description));
+        index++;
+        ui->mealCombo->addItem(QString(name),it->second->getId());
+    }
+    ui->menuTable->horizontalHeader()->show();
+    ui->orderTable->horizontalHeader()->show();
 }
 
 CustomerManage::~CustomerManage()
 {
     delete ui;
 }
+
 void CustomerManage::ensureSeat()
 {
     if(ui->seatCombo->currentText()!="請選擇座位"){
@@ -31,17 +51,23 @@ void CustomerManage::ensureSeat()
         //ui->deleBtn->setDisabled(false);
     }
 }
+
 void CustomerManage::clickedaction(int currentIndex)
 {
     ui->seatCombo->setCurrentIndex(currentIndex);
 }
+
 void CustomerManage::addToTable()
 {
-       ui->payBtn->setDisabled(false);
-       //ui->tableWidget->insertRow (ui-> tableWidget->rowCount());
-       //ui->tableWidget->setItem( i,0,new QTableWidgetItem(ui->mealCombo->currentText()));
-       //ui->tableWidget->setItem( i,1,new QTableWidgetItem(ui->amountCombo->currentText()));
-       i++;
+    ui->payBtn->setDisabled(false);
+    int mealId = ui->mealCombo->currentData().toInt();
+    int index = ui->orderTable->rowCount();
+    ui->orderTable->insertRow(ui->orderTable->rowCount());
+    QString name = QString::fromLocal8Bit((*_mealList)[mealId]->getName().c_str());
+    ui->orderTable->setItem(index,0,new QTableWidgetItem(name));
+    ui->orderTable->setItem(index,1,new QTableWidgetItem(QString("test")));
+    ui->orderTable->setItem(index,2,new QTableWidgetItem(QString("test")));
+    i++;
 }
 
 void CustomerManage::showTotalAmount()
@@ -51,6 +77,7 @@ void CustomerManage::showTotalAmount()
    init();
    delete d;
 }
+
 ////        switch (ui->seatCombo->currentIndex()) {
 ////        case 1:
 ////               ui->pushButton->setStyleSheet("background-color: rgb(255, 0, 0);");

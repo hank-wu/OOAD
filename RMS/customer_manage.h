@@ -30,6 +30,7 @@ private:
     bool DBConnection(QStringList &List);
     void init();
     RMSHandler * _rmsHandler;
+    std::map<int, Meal * > * _mealList;
 };
 
 #endif // CUSTOMER_MANAGE_H

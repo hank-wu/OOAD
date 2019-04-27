@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>輸入IP位置</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="IPLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>10</x>
      <y>20</y>
-     <width>151</width>
+     <width>171</width>
      <height>81</height>
     </rect>
    </property>
@@ -32,21 +32,21 @@
     <string>請輸入IP位置：</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="IPInput">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>49</y>
-     <width>113</width>
+     <x>190</x>
+     <y>50</y>
+     <width>171</width>
      <height>31</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="portLabel">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>100</y>
+     <x>120</x>
+     <y>90</y>
      <width>71</width>
      <height>51</height>
     </rect>
@@ -58,13 +58,13 @@
     </font>
    </property>
    <property name="text">
-    <string>Port號：</string>
+    <string>Port：</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="portInput">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>190</x>
      <y>110</y>
      <width>113</width>
      <height>31</height>

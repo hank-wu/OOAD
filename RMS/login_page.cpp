@@ -21,7 +21,5 @@ void LoginPage::showCustomerManagePage()
     CustomerManage *cm=new CustomerManage(nullptr,_rmsHandler);
     //this->hide();
     this->close();
-    parentWidget()->show();
     cm->show();
-
 }
