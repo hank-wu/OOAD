@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QWidget>
 #include "rmshandler.h"
+#include "dialog.h"
 
 namespace Ui {
 class CustomerManage;
@@ -16,21 +17,22 @@ public:
     explicit CustomerManage(QWidget *parent,RMSHandler * rmsHandler);
     ~CustomerManage();
 private slots:
-    void clickedaction(int currentIndex);
     void addToTable();
     void showTotalAmount();
     void ensureSeat();
+    void on_mealCombo_currentIndexChanged(int index);
+    void paymentSuccess();
+    void cancelPayment();
 
 private:
     Ui::CustomerManage *ui;
-    QList<QString> tm_contact_name;
-    QList<QString> tm_contact_amount;
-    QMessageBox q;
-    int i;
-    bool DBConnection(QStringList &List);
-    void init();
+    void initViewStatus();
+    void refreshSeat();
+    void refreshSeatName();
     RMSHandler * _rmsHandler;
     std::map<int, Meal * > * _mealList;
+    std::map<int, Seat * > * _seatList;
+    Dialog * payment;
 };
 
 #endif // CUSTOMER_MANAGE_H

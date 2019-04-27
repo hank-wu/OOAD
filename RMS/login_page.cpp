@@ -9,7 +9,6 @@ LoginPage::LoginPage(QWidget *parent,RMSHandler * rmsHandler) :
 {
     ui->setupUi(this);
     connect(ui->connectButton,SIGNAL(clicked()),this,SLOT(showCustomerManagePage()));
-
 }
 
 LoginPage::~LoginPage()

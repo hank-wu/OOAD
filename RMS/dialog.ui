@@ -13,11 +13,11 @@
   <property name="windowTitle">
    <string>付款</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="inputAmount">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>10</y>
+     <y>40</y>
      <width>151</width>
      <height>61</height>
     </rect>
@@ -35,8 +35,8 @@
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>30</y>
+     <x>190</x>
+     <y>60</y>
      <width>113</width>
      <height>31</height>
     </rect>
@@ -66,6 +66,44 @@
    </property>
    <property name="text">
     <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="totalAmountLabel">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>0</y>
+     <width>81</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>總金額</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="totalAmount">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>0</y>
+     <width>81</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

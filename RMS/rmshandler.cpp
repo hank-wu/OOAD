@@ -104,5 +104,4 @@ void RMSHandler::completeOrder(){
     Seat * seat = _seatDao->getSeat(seatId);
     _seatList->refresh(seatId,seat);
     delete _order;
-
 }

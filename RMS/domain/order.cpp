@@ -34,6 +34,9 @@ void Order::add(Meal *meal, int quantity){
 }
 
 void Order::createBill(){
+    if(_bill){
+        delete _bill;
+    }
     _bill = new Bill(getAmount());
 }
 

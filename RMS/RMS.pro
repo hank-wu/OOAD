@@ -48,7 +48,8 @@ SOURCES += \
     domain/order_pair.cpp \
     customer_manage.cpp \
     login_page.cpp \
-    dialog.cpp
+    dialog.cpp \
+    receipt_dilog.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -71,13 +72,15 @@ HEADERS += \
     domain/order_pair.h \
     customer_manage.h \
     login_page.h \
-    dialog.h
+    dialog.h \
+    receipt_dilog.h
 
 FORMS += \
     mainwindow.ui \
     customer_manage.ui \
     login_page.ui \
-    dialog.ui
+    dialog.ui \
+    receipt_dilog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
