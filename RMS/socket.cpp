@@ -104,8 +104,9 @@ void Socket::onReceive(){
 }
 
 void Socket::onError(QAbstractSocket::SocketError socketError){
-     qInfo() << "connect fail";
-     connection = false;
+    qInfo() << "connect fail";
+    connection = false;
+    emit connectFail();
 }
 
 bool Socket::getHost(){

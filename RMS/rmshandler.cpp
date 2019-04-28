@@ -34,6 +34,10 @@ void RMSHandler::SetDisconnectedListener(const QObject *receiver, const char *me
     connect(_socket,SIGNAL(socketDisconnected()),receiver,member);
 }
 
+void RMSHandler::SetConnectFailListener(const QObject *receiver, const char *member){
+    connect(_socket,SIGNAL(connectFail()),receiver,member);
+}
+
 void RMSHandler::notify(QString output){
     _socket->notify(output);
 }
@@ -109,6 +113,19 @@ Receipt * RMSHandler::getReceipt(){
     return _order->getReceipt();
 }
 
+void RMSHandler::refreshSeatOrder(int seatId){
+    _seatOrderList->clearSeat(seatId);
+    std::vector<OrderPair> * orderPairList = _seatDao->getOrderPair(seatId);
+    for(std::vector<OrderPair>::iterator it = orderPairList->begin(); it!= orderPairList->end(); it++){
+     Meal * meal = _menu->getMeal(it->getId());
+     _seatOrderList->addOrder(seatId,meal,(*it).getAmount());
+    }
+}
+
+void RMSHandler::refreshSeat(int seatId){
+    Seat * seat = _seatDao->getSeat(seatId);
+    _seatList->refresh(seatId,seat);
+}
 void RMSHandler::completeOrder(){
     int seatId = _order->getSeatId();
     _seatDao->setSeatUsed(seatId);
@@ -125,4 +142,8 @@ void RMSHandler::clearSeat(int seatId){
 
 std::map<int, SeatOrder * > * RMSHandler::showSeatOrderList(){
     return _seatOrderList->getAllSeatOrder();
+}
+
+int RMSHandler::getOrderSeatId(){
+    return _order->getSeatId();
 }

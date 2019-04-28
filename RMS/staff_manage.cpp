@@ -11,6 +11,7 @@ StaffManage::StaffManage(QWidget *parent, RMSHandler *rmsHandler) :
     _rmsHandler->refreshMenu();
     _rmsHandler->refreshSeatOrderList();
 
+    _rmsHandler->SetSocketLisener(this,SLOT(onReceiveSocket(QString)));
     _seatOrederList = _rmsHandler->showSeatOrderList();
 
     refreshSeatName();
@@ -82,7 +83,7 @@ void StaffManage::refreshSeatCombo(){
     ui->seatCombo->addItem("請選擇座位" ,0);
 
     for(std::map<int, SeatOrder *>::iterator it = _seatOrederList->begin(); it!=_seatOrederList->end();it++){
-        if(!it->second->isUsed()){
+        if(it->second->isUsed()){
             Seat * seat= it->second;
             int seatId = seat->getSeatId();
             QString seatName = QString::fromLocal8Bit(seat->getTableName().c_str());
@@ -147,16 +148,32 @@ void StaffManage::refreshSeat(){
 }
 
 void StaffManage::on_determineButton_clicked(){
+//
+    if(ui->seatCombo->currentIndex()!=0){
+        int seatId = ui->seatCombo->currentData().toInt();
+        _rmsHandler->clearSeat(seatId);
+        refreshSeat();
+        refreshSeatCombo();
+        _rmsHandler->notify(QString::number(seatId));
+    }
+}
+
+void StaffManage::onReceiveSocket(QString input){
+    int seatId = input.split("\n")[0].toInt();
+    qDebug()<<seatId;
+    int selectSeatId = ui->seatCombo->currentData().toInt();
+
+    _rmsHandler->refreshSeatOrder(seatId);
+    refreshSeat();
     refreshSeatCombo();
     for(int i = 0; i<ui->seatCombo->count();i++){
-
+        if(selectSeatId == ui->seatCombo->itemData(i).toInt()){
+            ui->seatCombo->setCurrentIndex(i);
+            break;
+        }
     }
 }
 
 void StaffManage::on_seatCombo_currentIndexChanged(int index)
 {
-    if(index !=-1){
-        selectSeatId = ui->seatCombo->currentData().toInt();
-    }
-    qDebug()<<"tetsttest"<<index;
 }

@@ -31,6 +31,7 @@ private:
 private slots:
     void on_determineButton_clicked();
     void on_seatCombo_currentIndexChanged(int index);
+    void onReceiveSocket(QString input);
 };
 
 #endif // STAFF_MANAGE_H

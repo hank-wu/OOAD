@@ -20,6 +20,7 @@ public:
     void SetNewConnectionListener(const QObject* , const char * );
     void SetConnectedListener(const QObject* , const char * );
     void SetDisconnectedListener(const QObject* , const char * );
+    void SetConnectFailListener(const QObject* receiver, const char * member);
     void notify(QString);
     bool IsConnect();
     bool IsHost();
@@ -39,6 +40,9 @@ public:
     void completeOrder();
     void clearSeat(int seatId);
     std::map<int,SeatOrder *> * showSeatOrderList();
+    int getOrderSeatId();
+    void refreshSeatOrder(int seatId);
+    void refreshSeat(int seatId);
 
 private:
     Socket* _socket;

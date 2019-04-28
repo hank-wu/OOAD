@@ -3,6 +3,7 @@
 #include "customer_manage.h"
 #include <QDialog>
 #include "rmshandler.h"
+#include <QTcpSocket>
 
 namespace Ui {
 class LoginPage;
@@ -18,12 +19,11 @@ public:
 
 private slots:
     void showCustomerManagePage();
-
+    void onConnect();
+    void onConnectFail();
 private:
     Ui::LoginPage *ui;
     RMSHandler * _rmsHandler;
-
-
 
 };
 

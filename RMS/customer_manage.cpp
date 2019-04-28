@@ -16,6 +16,8 @@ CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
     rmsHandler->refreshMenu();
     rmsHandler->refreshSeatList();
 
+    _rmsHandler->SetSocketLisener(this,SLOT(onReceiveSocket(QString)));
+
     //reset menu&seatList
     _mealList = rmsHandler->showMenu();
     _seatList = rmsHandler->showSeatList();
@@ -35,6 +37,7 @@ CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
 
     refreshSeatName();
     refreshSeat();
+    refreshSeatCombo();
 
     ui->menuTable->horizontalHeader()->show();
     ui->orderTable->horizontalHeader()->show();
@@ -106,7 +109,7 @@ void  CustomerManage::initViewStatus()
     ui-> orderTable->setRowCount(0);
 }
 
-void CustomerManage::refreshSeat(){
+void CustomerManage::refreshSeatCombo(){
     ui->seatCombo->clear();
     ui->seatCombo->addItem("請選擇座位" ,0);
 
@@ -118,6 +121,10 @@ void CustomerManage::refreshSeat(){
             ui->seatCombo->addItem(seatName, seatId);
         }
     }
+}
+
+void CustomerManage::refreshSeat(){
+
 
     if((*_seatList)[1]->isUsed())
         ui->seatOne->setStyleSheet("background-color: rgb(255, 100, 100);");
@@ -169,7 +176,6 @@ void CustomerManage::refreshSeat(){
     else
         ui->seatTen->setStyleSheet("background-color: rgb(255, 255, 255);");
 }
-
 
 void CustomerManage::refreshSeatName(){
     std::string stdSeatName = (*_seatList)[1]->getTableName();
@@ -224,16 +230,35 @@ void CustomerManage::on_mealCombo_currentIndexChanged(int index)
 void CustomerManage::paymentSuccess()
 {
     qDebug()<<"test"<<_rmsHandler->getBalance();
-    //payment->hide();
-    delete payment;
+    payment->hide();
     ReceiptDilog receiptDilog(this, _rmsHandler->getReceipt(),_rmsHandler->getBalance());
     receiptDilog.exec();
+    int seatId = _rmsHandler->getOrderSeatId();
     _rmsHandler->completeOrder();
+    _rmsHandler->notify(QString::number(seatId));
     initViewStatus();
     refreshSeat();
+    refreshSeatCombo();
+    delete payment;
 }
 
 void CustomerManage::cancelPayment(){
     delete payment;
 }
 
+void CustomerManage::onReceiveSocket(QString input){
+    int seatId = input.split("\n")[0].toInt();
+    qDebug()<<seatId;
+    int selectSeatId = ui->seatCombo->currentData().toInt();
+
+    _rmsHandler->refreshSeat(seatId);
+    refreshSeat();
+    refreshSeatCombo();
+
+    for(int i = 0; i<ui->seatCombo->count();i++){
+        if(selectSeatId == ui->seatCombo->itemData(i).toInt()){
+            ui->seatCombo->setCurrentIndex(i);
+            break;
+        }
+    }
+}

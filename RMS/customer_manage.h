@@ -23,6 +23,7 @@ private slots:
     void on_mealCombo_currentIndexChanged(int index);
     void paymentSuccess();
     void cancelPayment();
+    void onReceiveSocket(QString input);
 
 private:
     Ui::CustomerManage *ui;
@@ -33,7 +34,7 @@ private:
     std::map<int, Meal * > * _mealList;
     std::map<int, Seat * > * _seatList;
     Dialog * payment;
-    int selectSeatId = 0;
+    void refreshSeatCombo();
 };
 
 #endif // CUSTOMER_MANAGE_H

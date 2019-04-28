@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "host_dialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -26,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     menuDao = new MenuDao(query);
 
     _rmsHandler = new RMSHandler(seatDao,menuDao);
-    lg = new LoginPage(this,_rmsHandler);
+
 }
 
 MainWindow::~MainWindow()
@@ -37,6 +38,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnCustomer_clicked()
 {
+    lg = new LoginPage(this,_rmsHandler);
     this->hide();
     //this->close();
     lg->exec();
@@ -44,9 +46,10 @@ void MainWindow::on_btnCustomer_clicked()
 
 void MainWindow::on_btnStaff_clicked()
 {
-    StaffManage * sm = new StaffManage(nullptr, _rmsHandler);
+    //StaffManage * sm = new StaffManage(nullptr, _rmsHandler);
+    HostDialog * host = new HostDialog(nullptr,_rmsHandler);
     this->hide();
-    sm->show();
+    host->exec();
 }
 
 void MainWindow::on_btnBoss_clicked(){

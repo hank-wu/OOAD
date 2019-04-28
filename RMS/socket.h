@@ -27,6 +27,8 @@ signals:
     void newConnection();
     void socketConnected();
     void socketDisconnected();
+    void connectFail();
+
 private slots:
     void onNewConnection();
     void onConnected();
