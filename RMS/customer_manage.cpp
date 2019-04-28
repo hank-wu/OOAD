@@ -70,8 +70,6 @@ void CustomerManage::addToTable()
         QString name = QString::fromLocal8Bit((*_mealList)[mealId]->getName().c_str());
         ui->orderTable->setItem(index,0,new QTableWidgetItem(name));
 
-
-
         int amount = ui->amountCombo->currentText().toInt();
         int price =(*_mealList)[mealId]->getPrice();
         int subtotal = price * amount;
@@ -87,7 +85,7 @@ void CustomerManage::showTotalAmount()
     _rmsHandler->createBill();
     //qDebug()<<"test6"<<_rmsHandler->getAmount();
     //_rmsHandler->pay(180);
-    Dialog *payment = new Dialog(this, _rmsHandler);
+    payment = new Dialog(this, _rmsHandler);
     connect(payment, SIGNAL(accepted()), this, SLOT(paymentSuccess()));
     connect(payment, SIGNAL(rejected()), this, SLOT(cancelPayment()));
     payment->exec();

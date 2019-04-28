@@ -21,3 +21,12 @@ std::map<int,SeatOrder *> * SeatOrderList::getAllSeatOrder(){
 void SeatOrderList::clearSeat(int seatId){
     (*_seatOrders)[seatId]->clear();
 }
+
+void SeatOrderList::refresh(std::map<int, Seat *> *seats){
+    for(std::map<int,Seat *>::iterator it= seats->begin();it != seats->end(); ++it){
+        int id = it->first;
+        (*_seatOrders)[id]->setTableName(it->second->getTableName());
+        if(it->second->isUsed() != (*_seatOrders)[id]->isUsed())
+            (*_seatOrders)[id]->changeState();
+    }
+}

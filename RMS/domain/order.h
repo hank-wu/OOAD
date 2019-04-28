@@ -28,7 +28,7 @@ private:
     Seat *_seat;
     //OrderItem * _orderItem;
     std::map<int, OrderItem*> * _orderItemList;
-    Bill * _bill;
+    Bill * _bill = nullptr;
     bool _orderComplete;
 };
 

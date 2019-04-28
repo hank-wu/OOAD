@@ -49,7 +49,8 @@ SOURCES += \
     customer_manage.cpp \
     login_page.cpp \
     dialog.cpp \
-    receipt_dilog.cpp
+    receipt_dilog.cpp \
+    staff_manage.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -73,14 +74,16 @@ HEADERS += \
     customer_manage.h \
     login_page.h \
     dialog.h \
-    receipt_dilog.h
+    receipt_dilog.h \
+    staff_manage.h
 
 FORMS += \
     mainwindow.ui \
     customer_manage.ui \
     login_page.ui \
     dialog.ui \
-    receipt_dilog.ui
+    receipt_dilog.ui \
+    staff_manage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

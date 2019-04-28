@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-//#include "staff_manage.h"
+#include "staff_manage.h"
 #include "login_page.h"
 #include <QMainWindow>
 #include "rmshandler.h"
@@ -25,7 +25,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-//    StaffManage sm;
+    //StaffManage sm;
     LoginPage * lg;
 //    CustomerManage cm;
     RMSHandler * _rmsHandler;

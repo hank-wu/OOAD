@@ -11,6 +11,7 @@ public:
     void addOrder(int seatId,Meal *meal,int quantity);
     std::map<int,SeatOrder *> * getAllSeatOrder();
     void clearSeat(int seatId);
+    void refresh(std::map<int,Seat *> *seats);
 
 private:
     const int _count = 10;

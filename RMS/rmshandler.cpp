@@ -7,7 +7,7 @@ RMSHandler::RMSHandler(SeatDao * seatDao, MenuDao * menuDao): _seatDao(seatDao),
     _socket = new Socket();
     _seatList = new SeatList();
     _menu = new Menu();
-
+    _seatOrderList = new SeatOrderList();
 }
 
 void RMSHandler::Host(QString& IP, quint16& port){
@@ -60,6 +60,18 @@ void RMSHandler::refreshMenu(){
     _menu->refresh(mealList);
 }
 
+void RMSHandler::refreshSeatOrderList(){
+    std::map<int,Seat *> * seats = _seatDao->getSeatList();
+    _seatOrderList->refresh(seats);
+    for(int i=1; i<=10;i++){
+        std::vector<OrderPair> * orderPairList = _seatDao->getOrderPair(i);
+        for(std::vector<OrderPair>::iterator it = orderPairList->begin(); it!= orderPairList->end(); it++){
+            Meal * meal = _menu->getMeal(it->getId());
+            _seatOrderList->addOrder(i,meal,(*it).getAmount());
+        }
+    }
+}
+
 std::map<int,Meal *> * RMSHandler::showMenu(){
     return  _menu->getMenu();
 }
@@ -104,4 +116,13 @@ void RMSHandler::completeOrder(){
     Seat * seat = _seatDao->getSeat(seatId);
     _seatList->refresh(seatId,seat);
     delete _order;
+}
+
+void RMSHandler::clearSeat(int seatId){
+    _seatDao->clearSeat(seatId);
+    _seatOrderList->clearSeat(seatId);
+}
+
+std::map<int, SeatOrder * > * RMSHandler::showSeatOrderList(){
+    return _seatOrderList->getAllSeatOrder();
 }

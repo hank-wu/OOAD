@@ -33,6 +33,7 @@ private:
     std::map<int, Meal * > * _mealList;
     std::map<int, Seat * > * _seatList;
     Dialog * payment;
+    int selectSeatId = 0;
 };
 
 #endif // CUSTOMER_MANAGE_H

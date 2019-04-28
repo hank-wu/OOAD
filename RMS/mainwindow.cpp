@@ -44,8 +44,9 @@ void MainWindow::on_btnCustomer_clicked()
 
 void MainWindow::on_btnStaff_clicked()
 {
-     this->close();
-     //sm.show();
+    StaffManage * sm = new StaffManage(nullptr, _rmsHandler);
+    this->hide();
+    sm->show();
 }
 
 void MainWindow::on_btnBoss_clicked(){

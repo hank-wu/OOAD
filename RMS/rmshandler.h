@@ -7,6 +7,7 @@
 #include "./domain/seat_list.h"
 #include "./domain/menu.h"
 #include "./domain/order.h"
+#include "./domain/seat_order_list.h"
 #include <map>
 
 class RMSHandler : public QObject
@@ -24,6 +25,7 @@ public:
     bool IsHost();
     void refreshSeatList();
     void refreshMenu();
+    void refreshSeatOrderList();
     std::map<int,Seat *> * showSeatList();
     std::map<int,Meal *> * showMenu();
     void createOrder(int seatId);
@@ -35,15 +37,18 @@ public:
     int getBalance();
     Receipt * getReceipt();
     void completeOrder();
-
+    void clearSeat(int seatId);
+    std::map<int,SeatOrder *> * showSeatOrderList();
 
 private:
     Socket* _socket;
     SeatDao * _seatDao;
     MenuDao * _menuDao;
     SeatList * _seatList;
+    SeatOrderList * _seatOrderList;
     Menu * _menu;
     Order * _order;
+
 };
 
 #endif // RMSHANDLER_H
