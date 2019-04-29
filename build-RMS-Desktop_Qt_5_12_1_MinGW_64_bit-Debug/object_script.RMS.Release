@@ -17,5 +17,17 @@ release/receipt.o
 release/menu_dao.o
 release/seat_dao.o
 release/order_pair.o
+release/customer_manage.o
+release/login_page.o
+release/dialog.o
+release/receipt_dilog.o
+release/staff_manage.o
+release/host_dialog.o
 release/moc_mainwindow.o
 release/moc_socket.o
+release/moc_customer_manage.o
+release/moc_login_page.o
+release/moc_dialog.o
+release/moc_receipt_dilog.o
+release/moc_staff_manage.o
+release/moc_host_dialog.o

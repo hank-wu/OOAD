@@ -400,7 +400,7 @@ release/gmock-all.o: ../googletest-master/googlemock/src/gmock-all.cc ../googlet
 		../googletest-master/googlemock/src/gmock.cc
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\gmock-all.o ..\googletest-master\googlemock\src\gmock-all.cc
 
-release/main.o: ../rms_test/main.cpp ../rms_test/test_domain/test_menu.h \
+release/main.o: ../rms_test/main.cpp ../rms_test/test_controller/test_rms_handler.h \
 		../googletest-master/googletest/include/gtest/gtest.h \
 		../googletest-master/googletest/include/gtest/internal/gtest-internal.h \
 		../googletest-master/googletest/include/gtest/internal/gtest-port.h \
@@ -426,24 +426,9 @@ release/main.o: ../rms_test/main.cpp ../rms_test/test_domain/test_menu.h \
 		../googletest-master/googlemock/include/gmock/internal/gmock-port.h \
 		../googletest-master/googlemock/include/gmock/internal/custom/gmock-port.h \
 		../googletest-master/googlemock/include/gmock/internal/custom/gmock-matchers.h \
-		../rms_test/test_usecase/test_manage_order.h \
-		../../usecase/manage_order.h \
-		../../domain/seat_list.h \
-		../../domain/seat.h \
-		../../domain/seat_order_list.h \
-		../../domain/seat_order.h \
-		../../domain/order_item.h \
-		../../domain/meal.h \
-		../../domain/meal_list.h \
-		../../domain/order.h \
-		../../domain/bill.h \
-		../../domain/receipt.h \
-		../../domain/menu.h \
-		../rms_test/test_dao/test_menu_dao.h \
-		../../dao/menu_dao.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QString \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstring.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qchar.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlDatabase \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsqlglobal.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qglobal.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qconfig.h \
@@ -465,6 +450,9 @@ release/main.o: ../rms_test/main.cpp ../rms_test/test_domain/test_menu.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmutex.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qnumeric.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qversiontagging.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsql-config.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstring.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qchar.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qbytearray.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qrefcount.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qnamespace.h \
@@ -475,35 +463,39 @@ release/main.o: ../rms_test/main.cpp ../rms_test/test_domain/test_menu.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlquery.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsqlglobal.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsql-config.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqldatabase.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QDebug \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qdebug.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qalgorithms.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qhash.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qiterator.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlError \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlerror.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QString \
+		../../dao/seat_dao.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqltablemodel.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlquerymodel.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvariant.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qlist.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qalgorithms.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qiterator.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qhashfunctions.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qpair.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qbytearraylist.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringlist.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qregexp.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmap.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qtextstream.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qiodevice.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobject.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcoreevent.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qscopedpointer.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmetatype.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmap.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qdebug.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qhash.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qtextstream.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qiodevice.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobject.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcoreevent.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qscopedpointer.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobject_impl.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qlocale.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvariant.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qshareddata.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvector.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qpoint.h \
@@ -511,19 +503,12 @@ release/main.o: ../rms_test/main.cpp ../rms_test/test_domain/test_menu.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcontiguouscache.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qsharedpointer.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qsharedpointer_impl.h \
-		../rms_test/test_dao/test_seat_dao.h \
-		../../dao/seat_dao.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlDatabase \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlTableModel \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqltablemodel.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlquerymodel.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlError \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlerror.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlRecord \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlrecord.h \
+		../../domain/seat.h \
 		../../domain/order_pair.h \
-		../rms_test/test_controller/test_rms_handler.h \
+		../../dao/menu_dao.h \
+		../../domain/meal.h \
 		../../rmshandler.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtWidgets/QApplication \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtWidgets/qapplication.h \
@@ -579,7 +564,15 @@ release/main.o: ../rms_test/main.cpp ../rms_test/test_domain/test_menu.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qabstractsocket.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qhostaddress.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/QTcpSocket \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qtcpsocket.h
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qtcpsocket.h \
+		../../domain/seat_list.h \
+		../../domain/menu.h \
+		../../domain/order.h \
+		../../domain/order_item.h \
+		../../domain/bill.h \
+		../../domain/receipt.h \
+		../../domain/seat_order_list.h \
+		../../domain/seat_order.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\rms_test\main.cpp
 
 release/manage_order.o: ../../usecase/manage_order.cpp ../../usecase/manage_order.h \
@@ -610,7 +603,8 @@ release/order.o: ../../domain/order.cpp ../../domain/order.h \
 		../../domain/meal.h \
 		../../domain/seat.h \
 		../../domain/bill.h \
-		../../domain/receipt.h
+		../../domain/receipt.h \
+		../../domain/order_pair.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\order.o ..\..\domain\order.cpp
 
 release/seat_order.o: ../../domain/seat_order.cpp ../../domain/seat_order.h \
@@ -643,9 +637,9 @@ release/receipt.o: ../../domain/receipt.cpp ../../domain/receipt.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\receipt.o ..\..\domain\receipt.cpp
 
 release/menu_dao.o: ../../dao/menu_dao.cpp ../../dao/menu_dao.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QString \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstring.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qchar.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlDatabase \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsqlglobal.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qglobal.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qconfig.h \
@@ -667,6 +661,9 @@ release/menu_dao.o: ../../dao/menu_dao.cpp ../../dao/menu_dao.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmutex.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qnumeric.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qversiontagging.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsql-config.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstring.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qchar.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qbytearray.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qrefcount.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qnamespace.h \
@@ -675,13 +672,10 @@ release/menu_dao.o: ../../dao/menu_dao.cpp ../../dao/menu_dao.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringalgorithms.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringview.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QString \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlquery.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsqlglobal.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsql-config.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqldatabase.h \
 		../../domain/meal.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlTableModel \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqltablemodel.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlquerymodel.h \
@@ -931,15 +925,15 @@ release/rmshandler.o: ../../rmshandler.cpp ../../rmshandler.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/QTcpSocket \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qtcpsocket.h \
 		../../dao/menu_dao.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlDatabase \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsql-config.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QString \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlquery.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsqlglobal.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsql-config.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqldatabase.h \
 		../../domain/meal.h \
 		../../dao/seat_dao.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlTableModel \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqltablemodel.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlquerymodel.h \
@@ -950,7 +944,14 @@ release/rmshandler.o: ../../rmshandler.cpp ../../rmshandler.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlrecord.h \
 		../../domain/seat.h \
 		../../domain/order_pair.h \
-		../../domain/seat_list.h
+		../../domain/seat_list.h \
+		../../domain/menu.h \
+		../../domain/order.h \
+		../../domain/order_item.h \
+		../../domain/bill.h \
+		../../domain/receipt.h \
+		../../domain/seat_order_list.h \
+		../../domain/seat_order.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\rmshandler.o ..\..\rmshandler.cpp
 
 release/socket.o: ../../socket.cpp ../../socket.h \

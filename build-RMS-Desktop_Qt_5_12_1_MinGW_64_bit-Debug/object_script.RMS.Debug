@@ -17,5 +17,17 @@ debug/receipt.o
 debug/menu_dao.o
 debug/seat_dao.o
 debug/order_pair.o
+debug/customer_manage.o
+debug/login_page.o
+debug/dialog.o
+debug/receipt_dilog.o
+debug/staff_manage.o
+debug/host_dialog.o
 debug/moc_mainwindow.o
 debug/moc_socket.o
+debug/moc_customer_manage.o
+debug/moc_login_page.o
+debug/moc_dialog.o
+debug/moc_receipt_dilog.o
+debug/moc_staff_manage.o
+debug/moc_host_dialog.o

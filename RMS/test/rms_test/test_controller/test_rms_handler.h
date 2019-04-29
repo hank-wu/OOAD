@@ -17,25 +17,25 @@ protected:
   void SetUp() override
   {
       if(QSqlDatabase::contains("qt_sql_default_connection"))
-          mydb = QSqlDatabase::database("qt_sql_default_connection");
+          mydb = new QSqlDatabase( QSqlDatabase::database("qt_sql_default_connection"));
       else{
           QString bFile = QString("rms.db");
-          mydb = QSqlDatabase::addDatabase("QSQLITE");
-          mydb.setDatabaseName(bFile);
-          if(!mydb.open()){
+          mydb = new QSqlDatabase( QSqlDatabase::addDatabase("QSQLITE"));
+          mydb->setDatabaseName(bFile);
+          if(!mydb->open()){
               throw std::string("打開資料庫失敗");
           }
       }
-      query = new QSqlQuery(mydb);
-      seatDao = new SeatDao(query);
-      menuDao = new MenuDao(query);
+      query = new QSqlQuery(*mydb);
+      seatDao = new SeatDao(query,mydb);
+      menuDao = new MenuDao(query,mydb);
   }
 
   void TearDown() override{
 
   }
 
-  QSqlDatabase mydb;
+  QSqlDatabase * mydb;
   QSqlQuery * query;
   SeatDao * seatDao;
   MenuDao * menuDao;
@@ -47,7 +47,7 @@ TEST_F(TestRMSHandler, showSeatList)
     rmsHandler->refreshSeatList();
     std::map<int,Seat *> * seats = rmsHandler->showSeatList();
     ASSERT_EQ(true,(*seats)[1]->isUsed());
-    ASSERT_EQ(true,(*seats)[2]->isUsed());
+    ASSERT_EQ(false,(*seats)[2]->isUsed());
 }
 
 TEST_F(TestRMSHandler, showMenu)
@@ -73,7 +73,7 @@ TEST_F(TestRMSHandler, order)
     ASSERT_EQ(40,rmsHandler->getBalance());
     Receipt * receipt = rmsHandler->getReceipt();
     ASSERT_EQ("A3",receipt->getTableName());
-    qDebug()<<"aaa001 = "<<QString(QString::fromLocal8Bit(receipt->content().c_str()));
+    //qDebug()<<"aaa001 = "<<QString(QString::fromLocal8Bit(receipt->content().c_str()));
     ASSERT_EQ(QString("餛飩麵  80\n排骨飯  180\n"),QString(QString::fromLocal8Bit(receipt->content().c_str())));
     rmsHandler->completeOrder();
 

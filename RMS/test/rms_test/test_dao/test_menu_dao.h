@@ -10,16 +10,16 @@
 
 TEST(Testdao, 01)
 {
-    QSqlDatabase mydb;
+    QSqlDatabase * mydb;
     QString bFile = QString("rms.db");
-    mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(bFile);
-    if(!mydb.open()){
+    mydb = new QSqlDatabase( QSqlDatabase::addDatabase("QSQLITE"));
+    mydb->setDatabaseName(bFile);
+    if(!mydb->open()){
         throw std::string("打開資料庫失敗");
     }
 
-    QSqlQuery * query = new QSqlQuery(mydb);
-    MenuDao * menuDao = new MenuDao(query);
+    QSqlQuery * query = new QSqlQuery(*mydb);
+    MenuDao * menuDao = new MenuDao(query,mydb);
     std::map<int,Meal *> *mealList;
     try {
         mealList = menuDao->getMealList();

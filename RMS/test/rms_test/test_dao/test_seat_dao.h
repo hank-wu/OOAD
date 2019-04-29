@@ -14,23 +14,23 @@ protected:
   void SetUp() override
   {
       if(QSqlDatabase::contains("qt_sql_default_connection"))
-          mydb = QSqlDatabase::database("qt_sql_default_connection");
+          mydb = new QSqlDatabase( QSqlDatabase::database("qt_sql_default_connection"));
       else{
           QString bFile = QString("rms.db");
-          mydb = QSqlDatabase::addDatabase("QSQLITE");
-          mydb.setDatabaseName(bFile);
-          if(!mydb.open()){
+          mydb = new QSqlDatabase( QSqlDatabase::addDatabase("QSQLITE"));
+          mydb->setDatabaseName(bFile);
+          if(!mydb->open()){
               throw std::string("打開資料庫失敗");
           }
       }
-      query = new QSqlQuery(mydb);
+      query = new QSqlQuery(*mydb);
   }
 
   void TearDown() override{
 
   }
 
-  QSqlDatabase mydb;
+  QSqlDatabase * mydb;
   QSqlQuery * query;
 
 };
@@ -38,7 +38,7 @@ protected:
 
 TEST_F(TestSeatDao, getSeatList)
 {
-    SeatDao * seatDao = new SeatDao(query);
+    SeatDao * seatDao = new SeatDao(query,mydb);
     std::map<int,Seat *> *seatList;
     seatList = seatDao->getSeatList();
     ASSERT_EQ(true,(*seatList)[1]->isUsed());
@@ -47,7 +47,7 @@ TEST_F(TestSeatDao, getSeatList)
 
 TEST_F(TestSeatDao, getSeat)
 {
-    SeatDao * seatDao = new SeatDao(query);
+    SeatDao * seatDao = new SeatDao(query,mydb);
     Seat * seat;
     seat = seatDao->getSeat(4);
     ASSERT_EQ(4,seat->getSeatId());
@@ -55,7 +55,7 @@ TEST_F(TestSeatDao, getSeat)
 
 TEST_F(TestSeatDao, clearSeat)
 {
-    SeatDao * seatDao = new SeatDao(query);
+    SeatDao * seatDao = new SeatDao(query,mydb);
     Seat * seat;
     seatDao->clearSeat(7);
     seat = seatDao->getSeat(7);
@@ -64,7 +64,7 @@ TEST_F(TestSeatDao, clearSeat)
 
 TEST_F(TestSeatDao, clearSeat2)
 {
-    SeatDao * seatDao = new SeatDao(query);
+    SeatDao * seatDao = new SeatDao(query,mydb);
     Seat * seat;
     seatDao->clearSeat(3);
     seat = seatDao->getSeat(3);
@@ -77,7 +77,7 @@ TEST_F(TestSeatDao, clearSeat2)
 
 TEST_F(TestSeatDao, setSeatisUsed)
 {
-    SeatDao * seatDao = new SeatDao(query);
+    SeatDao * seatDao = new SeatDao(query,mydb);
     Seat * seat;
     seatDao->setSeatUsed(7);
     seat = seatDao->getSeat(7);
@@ -87,7 +87,7 @@ TEST_F(TestSeatDao, setSeatisUsed)
 
 TEST_F(TestSeatDao, getOrderPair)
 {
-    SeatDao * seatDao = new SeatDao(query);
+    SeatDao * seatDao = new SeatDao(query,mydb);
 
     std::vector<OrderPair> * vecOrderPair;
     vecOrderPair = seatDao->getOrderPair(2);
@@ -107,7 +107,7 @@ TEST_F(TestSeatDao, setSeatOrderPair)
 {
     OrderPair orderPairOne(5,8);
     OrderPair orderPairTwo(6,9);
-    SeatDao * seatDao = new SeatDao(query);
+    SeatDao * seatDao = new SeatDao(query,mydb);
     std::vector<OrderPair> * vecOrderPair = new std::vector<OrderPair>();
     vecOrderPair->push_back(orderPairOne);
     vecOrderPair->push_back(orderPairTwo);
