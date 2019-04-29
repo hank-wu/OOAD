@@ -8,23 +8,20 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QSqlDatabase mydb;
+    QSqlDatabase * mydb;
     QSqlQuery * query;
     SeatDao * seatDao;
     MenuDao * menuDao;
     if(QSqlDatabase::contains("qt_sql_default_connection"))
-        mydb = QSqlDatabase::database("qt_sql_default_connection");
+        mydb = new QSqlDatabase( QSqlDatabase::database("qt_sql_default_connection"));
     else{
         QString bFile = QString("rms.db");
-        mydb = QSqlDatabase::addDatabase("QSQLITE");
-        mydb.setDatabaseName(bFile);
-        if(!mydb.open()){
-            throw std::string("打開資料庫失敗");
-        }
+        mydb = new QSqlDatabase( QSqlDatabase::addDatabase("QSQLITE"));
+        mydb->setDatabaseName(bFile);
     }
-    query = new QSqlQuery(mydb);
-    seatDao = new SeatDao(query);
-    menuDao = new MenuDao(query);
+    query = new QSqlQuery(*mydb);
+    seatDao = new SeatDao(query, mydb);
+    menuDao = new MenuDao(query, mydb);
 
     _rmsHandler = new RMSHandler(seatDao,menuDao);
 

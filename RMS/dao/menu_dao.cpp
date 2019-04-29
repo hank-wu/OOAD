@@ -8,12 +8,13 @@
 #include <iostream>
 using std::string;
 
-MenuDao::MenuDao(QSqlQuery * query): _query(query)
+MenuDao::MenuDao(QSqlQuery * query, QSqlDatabase * mydb): _query(query),_mydb(mydb)
 {
 
 }
 
 std::map<int,Meal *> * MenuDao::getMealList(){
+    _mydb->open();
     std::map<int,Meal *> *mealList = new std::map<int,Meal *>();
 
     _query->exec("select * from menu");
@@ -38,7 +39,7 @@ std::map<int,Meal *> * MenuDao::getMealList(){
         Meal * meal = new Meal(id,name,description,price);
         (*mealList)[id] = meal;
     }
-
+    _mydb->close();
     return mealList;
 }
 

@@ -3,12 +3,13 @@
 #include <QDebug>
 using std::string;
 
-SeatDao::SeatDao(QSqlQuery * query): _query(query)
+SeatDao::SeatDao(QSqlQuery * query, QSqlDatabase *mydb): _query(query),_mydb(mydb)
 {
 
 }
 
 std::map<int,Seat *> * SeatDao::getSeatList(){
+    _mydb->open();
     std::map<int,Seat *> *seatList = new std::map<int,Seat *>();
 
     _query->exec("select * from seat");
@@ -30,12 +31,12 @@ std::map<int,Seat *> * SeatDao::getSeatList(){
         Seat * seat = new Seat(id,used,tableName);
         (*seatList)[id] = seat;
     }
-
+    _mydb->close();
     return seatList;
 }
 
 Seat * SeatDao::getSeat(int inputId){
-
+    _mydb->open();
     Seat * seat = nullptr;
 
     QString queryStr = "select * from seat where id = " + QString::number(inputId);
@@ -52,23 +53,26 @@ Seat * SeatDao::getSeat(int inputId){
         //std::cout<<"id = "<<id<<std::endl;
         seat = new Seat(id,used);
     }
-
+    _mydb->close();
     return seat;
 }
 
 void SeatDao::clearSeat(int inputId){
-
+    _mydb->open();
     QString queryStr = "UPDATE seat SET used = 0, mealId = NULL, amount = NULL WHERE id = " + QString::number(inputId);
     _query->exec(queryStr);
+    _mydb->close();
 }
 
 void SeatDao::setSeatUsed(int inputId){
-
+    _mydb->open();
     QString queryStr = "UPDATE seat SET used = 1 WHERE id = " + QString::number(inputId);
     _query->exec(queryStr);
+    _mydb->close();
 }
 
 void SeatDao::setSeatOrderPair(int inputId,std::vector<OrderPair> *vecOrderPair){
+    _mydb->open();
     std::vector<OrderPair>::iterator it;
     QString queryStrOne = "UPDATE seat SET mealId = '";
     QString queryStrTwo = "UPDATE seat SET amount = '";
@@ -85,10 +89,11 @@ void SeatDao::setSeatOrderPair(int inputId,std::vector<OrderPair> *vecOrderPair)
     qDebug() <<queryStrOne<<_query->exec(queryStrOne)<<endl;
     _query->exec(queryStrOne);
     _query->exec(queryStrTwo);
+    _mydb->close();
 }
 
 std::vector<OrderPair> * SeatDao::getOrderPair(int inputId){
-
+    _mydb->open();
     QString queryStr = "select * from seat where id = " + QString::number(inputId);
     _query->exec(queryStr);
 
@@ -121,6 +126,6 @@ std::vector<OrderPair> * SeatDao::getOrderPair(int inputId){
         //std::cout<<"id = "<<id<<std::endl;
         //seat = new Seat(id,used);
     }
-
+    _mydb->close();
     return vecOrderPair;
 }

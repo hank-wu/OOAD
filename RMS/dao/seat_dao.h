@@ -17,7 +17,7 @@ using std::string;
 class SeatDao
 {
 public:
-    SeatDao(QSqlQuery * query);
+    SeatDao(QSqlQuery * query, QSqlDatabase * mydb);
     std::map<int,Seat *> * getSeatList();
     Seat * getSeat(int inputId);
     void clearSeat(int inputId);
@@ -28,7 +28,7 @@ public:
 private:
     string _path;
     QSqlQuery * _query;
-
+    QSqlDatabase *_mydb;
 };
 
 #endif // SEAT_DAO_H
