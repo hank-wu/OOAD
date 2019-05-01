@@ -25,4 +25,5 @@ void HostDialog::onNewConnection(){
     StaffManage * staffManage = new StaffManage(nullptr, _rmsHandler);
     this->close();
     staffManage ->show();
+    _rmsHandler->closeDB();
 }

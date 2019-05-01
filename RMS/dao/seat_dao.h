@@ -24,6 +24,7 @@ public:
     void setSeatUsed(int inputId);
     void setSeatOrderPair(int inputId,std::vector<OrderPair> * vecOrderPair);
     std::vector<OrderPair> * getOrderPair(int inputId);
+    void closeDB();
 
 private:
     string _path;

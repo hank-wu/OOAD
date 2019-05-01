@@ -43,6 +43,7 @@ public:
     int getOrderSeatId();
     void refreshSeatOrder(int seatId);
     void refreshSeat(int seatId);
+    void closeDB();
 
 private:
     Socket* _socket;

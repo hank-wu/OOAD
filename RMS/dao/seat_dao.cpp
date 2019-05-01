@@ -129,3 +129,7 @@ std::vector<OrderPair> * SeatDao::getOrderPair(int inputId){
     _mydb->close();
     return vecOrderPair;
 }
+
+void SeatDao::closeDB(){
+    _mydb->close();
+}

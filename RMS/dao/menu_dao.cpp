@@ -43,4 +43,6 @@ std::map<int,Meal *> * MenuDao::getMealList(){
     return mealList;
 }
 
-
+void MenuDao::closeDB(){
+    _mydb->close();
+}

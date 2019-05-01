@@ -147,3 +147,8 @@ std::map<int, SeatOrder * > * RMSHandler::showSeatOrderList(){
 int RMSHandler::getOrderSeatId(){
     return _order->getSeatId();
 }
+
+void RMSHandler::closeDB(){
+    _seatDao->closeDB();
+    _menuDao->closeDB();
+}
