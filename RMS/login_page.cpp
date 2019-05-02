@@ -32,6 +32,7 @@ void LoginPage::onConnect(){
     //this->hide();
     this->close();
     cm->show();
+    _rmsHandler->closeDB();
 }
 
 void LoginPage::onConnectFail(){
