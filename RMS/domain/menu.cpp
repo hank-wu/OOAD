@@ -27,3 +27,32 @@ std::map<int,Meal *> * Menu::getMenu(){
 Meal * Menu::getMeal(int id){
     return (*_mealList)[id];
 }
+
+void Menu::createMeal(std::string name, std::string description, int price){
+    int newId;
+    if(_mealList->size()>0){
+        std::map<int,Meal *>::iterator it = _mealList->end();
+        it--;
+        newId = it->first+1;
+    }
+    else {
+        newId = 1;
+    }
+
+    Meal * newMeal = new Meal(newId,name,description,price);
+    (*_mealList)[newId] = newMeal;
+
+}
+
+void Menu::editMeal(int id, std::string name, std::string description, int price){
+    Meal * editMeal;
+    editMeal = (*_mealList)[id];
+    editMeal->setName(name);
+    editMeal->setDescription(description);
+    editMeal->setPrice(price);
+}
+
+void Menu::deleteMeal(int id){
+    delete (*_mealList)[id];
+    _mealList->erase(id);
+}

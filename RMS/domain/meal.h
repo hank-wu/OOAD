@@ -12,6 +12,9 @@ public:
     string getDescription();
     int getPrice();
     int getId();
+    void setName(string name);
+    void setDescription(string description);
+    void setPrice(int price);
 
 private:
     string _name;

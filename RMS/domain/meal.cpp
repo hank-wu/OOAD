@@ -21,3 +21,15 @@ int Meal::getPrice(){
 int Meal::getId(){
     return _id;
 }
+
+void Meal::setName(string name){
+    _name = name;
+}
+
+void Meal::setDescription(string description){
+    _description = description;
+}
+
+void Meal::setPrice(int price){
+    _price = price;
+}

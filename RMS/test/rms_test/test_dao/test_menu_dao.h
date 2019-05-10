@@ -8,17 +8,37 @@
 #include <iostream>
 #include <QDebug>
 
-TEST(Testdao, 01)
+class TestMenuDao: public ::testing::Test
 {
-    QSqlDatabase * mydb;
-    QString bFile = QString("rms.db");
-    mydb = new QSqlDatabase( QSqlDatabase::addDatabase("QSQLITE"));
-    mydb->setDatabaseName(bFile);
-    if(!mydb->open()){
-        throw std::string("打開資料庫失敗");
-    }
+protected:
+  void SetUp() override
+  {
+      if(QSqlDatabase::contains("qt_sql_default_connection"))
+          mydb = new QSqlDatabase( QSqlDatabase::database("qt_sql_default_connection"));
+      else{
+          QString bFile = QString("rms.db");
+          mydb = new QSqlDatabase( QSqlDatabase::addDatabase("QSQLITE"));
+          mydb->setDatabaseName(bFile);
+          if(!mydb->open()){
+              throw std::string("打開資料庫失敗");
+          }
+      }
+      query = new QSqlQuery(*mydb);
+  }
 
-    QSqlQuery * query = new QSqlQuery(*mydb);
+  void TearDown() override{
+
+  }
+
+  QSqlDatabase * mydb;
+  QSqlQuery * query;
+
+};
+
+
+
+TEST_F(TestMenuDao, 01)
+{
     MenuDao * menuDao = new MenuDao(query,mydb);
     std::map<int,Meal *> *mealList;
     try {
@@ -30,6 +50,18 @@ TEST(Testdao, 01)
 
 //    QString mealName = QString(QString::fromLocal8Bit((*mealList)[1]->getName().c_str()));
 //    qDebug()<<"mealName = "<<mealName<<endl;
+}
+
+TEST_F(TestMenuDao, create)
+{
+    MenuDao * menuDao = new MenuDao(query,mydb);
+    menuDao->createMeal("咖哩飯","咖哩粉加飯",70);
+    std::map<int,Meal *> *mealList;
+    mealList = menuDao->getMealList();
+
+    std::map<int,Meal *>::iterator it = mealList->end();
+    it--;
+    ASSERT_EQ(QString("咖哩飯"),QString(QString::fromLocal8Bit(it->second->getName().c_str())));
 }
 
 

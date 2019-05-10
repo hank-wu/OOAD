@@ -46,3 +46,17 @@ std::map<int,Meal *> * MenuDao::getMealList(){
 void MenuDao::closeDB(){
     _mydb->close();
 }
+
+void MenuDao::createMeal(string name, string description, int price){
+    _mydb->open();
+    QString sqlStr = "INSERT INTO menu (name,description,price) VALUES ";
+    /*QString qName = QString::fromLocal8Bit(name.c_str());
+    QString qDescription = QString::fromLocal8Bit(description.c_str());*/
+    QString qName = QString::fromStdString(name);
+    QString qDescription = QString::fromStdString(description);
+    QString qPrice = QString::number(price);
+    sqlStr += "('" + qName + "','" + qDescription + "','" + qPrice + "')";
+    _query->exec(sqlStr);
+
+    _mydb->close();
+}
