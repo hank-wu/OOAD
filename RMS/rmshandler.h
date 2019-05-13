@@ -44,6 +44,9 @@ public:
     void refreshSeatOrder(int seatId);
     void refreshSeat(int seatId);
     void closeDB();
+    bool createMeal(QString name,QString description,int price);
+    bool editMeal(int id,QString name,QString description,int price);
+    bool deleteMeal(int id);
 
 private:
     Socket* _socket;

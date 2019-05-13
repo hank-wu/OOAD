@@ -81,4 +81,36 @@ TEST_F(TestRMSHandler, order)
     ASSERT_EQ(true,(*seats)[3]->isUsed());
 }
 
+TEST_F(TestRMSHandler, createMeal)
+{
+    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao);
+    bool result = false;
+    rmsHandler->refreshMenu();
+    QString qstrName = "咖哩飯";
+    QString qstrDescription = "咖哩粉加飯";
+    result = rmsHandler->createMeal(qstrName,qstrDescription,70);
+    ASSERT_EQ(true,result);
+
+}
+
+TEST_F(TestRMSHandler, editMeal)
+{
+    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao);
+    bool result = false;
+    rmsHandler->refreshMenu();
+    QString qstrName = "炸雞";
+    QString qstrDescription = "麵包粉加雞";
+    result = rmsHandler->editMeal(11,qstrName,qstrDescription,50);
+    ASSERT_EQ(true,result);
+}
+
+TEST_F(TestRMSHandler, deleteMeal)
+{
+    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao);
+    bool result = false;
+    rmsHandler->refreshMenu();
+    result = rmsHandler->deleteMeal(11);
+    ASSERT_EQ(true,result);
+}
+
 #endif // TEST_RMS_HANDLER_H

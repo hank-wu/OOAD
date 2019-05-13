@@ -52,16 +52,48 @@ TEST_F(TestMenuDao, 01)
 //    qDebug()<<"mealName = "<<mealName<<endl;
 }
 
-TEST_F(TestMenuDao, create)
+TEST_F(TestMenuDao, createMeal)
 {
     MenuDao * menuDao = new MenuDao(query,mydb);
-    menuDao->createMeal("咖哩飯","咖哩粉加飯",70);
+    QString qstrName = "咖哩飯";
+    QString qstrDescription = "咖哩粉加飯";
+    bool result = false;
+    result = menuDao->createMeal(qstrName,qstrDescription,70);
+    ASSERT_EQ(true,result);
     std::map<int,Meal *> *mealList;
     mealList = menuDao->getMealList();
 
     std::map<int,Meal *>::iterator it = mealList->end();
     it--;
     ASSERT_EQ(QString("咖哩飯"),QString(QString::fromLocal8Bit(it->second->getName().c_str())));
+}
+
+TEST_F(TestMenuDao, editMeal)
+{
+    MenuDao * menuDao = new MenuDao(query,mydb);
+    QString qstrName = "炸雞";
+    QString qstrDescription = "麵包粉加雞";
+    bool result = false;
+    result = menuDao->editMeal(11,qstrName,qstrDescription,50);
+    ASSERT_EQ(true,result);
+    std::map<int,Meal *> *mealList;
+    mealList = menuDao->getMealList();
+
+    ASSERT_EQ(QString("炸雞"),QString(QString::fromLocal8Bit((*mealList)[11]->getName().c_str())));
+
+}
+
+TEST_F(TestMenuDao, deleteMeal)
+{
+    MenuDao * menuDao = new MenuDao(query,mydb);
+    bool result = false;
+    result = menuDao->deleteMeal(11);
+    ASSERT_EQ(true,result);
+    std::map<int,Meal *> *mealList;
+    mealList = menuDao->getMealList();
+
+    ASSERT_EQ(10,mealList->size());
+
 }
 
 

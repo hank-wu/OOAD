@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <iostream>
+#include <QDebug>
 using std::string;
 
 MenuDao::MenuDao(QSqlQuery * query, QSqlDatabase * mydb): _query(query),_mydb(mydb)
@@ -47,16 +48,43 @@ void MenuDao::closeDB(){
     _mydb->close();
 }
 
-void MenuDao::createMeal(string name, string description, int price){
+bool MenuDao::createMeal(QString name, QString description, int price){
+    bool result = false;
     _mydb->open();
     QString sqlStr = "INSERT INTO menu (name,description,price) VALUES ";
-    /*QString qName = QString::fromLocal8Bit(name.c_str());
-    QString qDescription = QString::fromLocal8Bit(description.c_str());*/
-    QString qName = QString::fromStdString(name);
-    QString qDescription = QString::fromStdString(description);
     QString qPrice = QString::number(price);
-    sqlStr += "('" + qName + "','" + qDescription + "','" + qPrice + "')";
-    _query->exec(sqlStr);
+    sqlStr += "('" + name + "','" + description + "','" + qPrice + "')";
+    result = _query->exec(sqlStr);
 
     _mydb->close();
+    return result;
+}
+
+bool MenuDao::editMeal(int id, QString name, QString description, int price){
+    bool result = false;
+    _mydb->open();
+    QString qPrice = QString::number(price);
+    QString sqlStr = "UPDATE menu SET name = '";
+    sqlStr += name + "', description = '" + description + "', " + "price = " + qPrice;
+    sqlStr += " WHERE id = " + QString::number(id);
+//    qDebug()<< sqlStr;
+//    qDebug()<< _query->exec(sqlStr);
+    result = _query->exec(sqlStr);
+
+    _mydb->close();
+    return result;
+}
+
+bool MenuDao::deleteMeal(int id){
+    bool result = false;
+    _mydb->open();
+
+    QString sqlStr = "DELETE FROM menu WHERE id = ";
+    sqlStr += QString::number(id);
+//    qDebug()<< sqlStr;
+//    qDebug()<< _query->exec(sqlStr);
+    result = _query->exec(sqlStr);
+
+    _mydb->close();
+    return result;
 }

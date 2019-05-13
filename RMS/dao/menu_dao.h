@@ -15,7 +15,9 @@ public:
     MenuDao(QSqlQuery * query, QSqlDatabase * mydb);
     std::map<int,Meal *> * getMealList();
     void closeDB();
-    void createMeal(string name,string description,int price);
+    bool createMeal(QString name,QString description,int price);
+    bool editMeal(int id,QString name,QString description,int price);
+    bool deleteMeal(int id);
 
 private:
     string _path;
