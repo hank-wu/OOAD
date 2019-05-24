@@ -23,6 +23,9 @@ debug/dialog.o
 debug/receipt_dilog.o
 debug/staff_manage.o
 debug/host_dialog.o
+debug/cargo.o
+debug/cargo_dao.o
+debug/warehouse.o
 debug/moc_mainwindow.o
 debug/moc_socket.o
 debug/moc_customer_manage.o

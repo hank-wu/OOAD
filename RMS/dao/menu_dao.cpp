@@ -51,9 +51,9 @@ void MenuDao::closeDB(){
 bool MenuDao::createMeal(QString name, QString description, int price){
     bool result = false;
     _mydb->open();
-    QString sqlStr = "INSERT INTO menu (name,description,price) VALUES ";
+    QString sqlStr = "INSERT INTO menu (name,description,price,cargo) VALUES ";
     QString qPrice = QString::number(price);
-    sqlStr += "('" + name + "','" + description + "','" + qPrice + "')";
+    sqlStr += "('" + name + "','" + description + "','" + qPrice + "',0" + ")";
     result = _query->exec(sqlStr);
 
     _mydb->close();

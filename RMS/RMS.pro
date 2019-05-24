@@ -51,7 +51,10 @@ SOURCES += \
     dialog.cpp \
     receipt_dilog.cpp \
     staff_manage.cpp \
-    host_dialog.cpp
+    host_dialog.cpp \
+    domain/cargo.cpp \
+    dao/cargo_dao.cpp \
+    domain/warehouse.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -77,7 +80,10 @@ HEADERS += \
     dialog.h \
     receipt_dilog.h \
     staff_manage.h \
-    host_dialog.h
+    host_dialog.h \
+    domain/cargo.h \
+    dao/cargo_dao.h \
+    domain/warehouse.h
 
 FORMS += \
     mainwindow.ui \

@@ -37,6 +37,11 @@ HEADERS += \
         ../../domain/order_pair.h   \
         ../../rmshandler.h   \
         ../../socket.h   \
+        ../../domain/cargo.h   \
+    test_domain/test_cargo.h    \
+        ../../dao/cargo_dao.h   \
+    test_domain/test_warehouse.h    \
+        ../../domain/warehouse.h   \
 
 
 SOURCES += \
@@ -58,3 +63,7 @@ SOURCES += \
         ../../domain/order_pair.cpp   \
         ../../rmshandler.cpp   \
         ../../socket.cpp   \
+        ../../domain/cargo.cpp   \
+        ../../dao/cargo_dao.cpp   \
+        ../../domain/warehouse.cpp   \
+
