@@ -9,12 +9,28 @@ void Warehouse::buildCargo(Cargo * cargo){
     (*_cargoList)[cargo->getId()] = cargo;
 }
 
-void Warehouse::increaseCargoAmount(int id, int amount){
+bool Warehouse::increaseCargoAmount(int id, int amount){
+    int totalCapacity = 0;
+    for(std::map<int,Cargo *>::iterator it = _cargoList->begin();it != _cargoList->end(); it++){
+        totalCapacity += it->second->getAmount();
+    }
+    if(totalCapacity+amount > _capacity)
+        return false;
     Cargo * cargo = (*_cargoList)[id];
     cargo->increaseAmount(amount);
+    return true;
 }
 
-void Warehouse::decreaseCargoAmount(int id, int amount){
+bool Warehouse::decreaseCargoAmount(int id, int amount){
     Cargo * cargo = (*_cargoList)[id];
+    if(cargo->getAmount() < amount)
+        return false;
     cargo->decreaseAmount(amount);
+    return true;
 }
+
+int Warehouse::getCargoAmount(int id){
+    Cargo * cargo = (*_cargoList)[id];
+    return cargo->getAmount();
+}
+

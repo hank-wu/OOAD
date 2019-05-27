@@ -8,8 +8,9 @@ class Warehouse
 public:
     Warehouse();
     void buildCargo(Cargo * cargo);
-    void increaseCargoAmount(int id,int amount);
-    void decreaseCargoAmount(int id,int amount);
+    bool increaseCargoAmount(int id,int amount);
+    bool decreaseCargoAmount(int id,int amount);
+    int getCargoAmount(int id);
 
 private:
     int _capacity = 200;

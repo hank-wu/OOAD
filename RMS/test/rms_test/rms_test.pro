@@ -42,6 +42,7 @@ HEADERS += \
         ../../dao/cargo_dao.h   \
     test_domain/test_warehouse.h    \
         ../../domain/warehouse.h   \
+    test_dao/test_cargo_dao.h
 
 
 SOURCES += \

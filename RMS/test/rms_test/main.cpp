@@ -5,7 +5,8 @@
 //#include "./test_dao/test_seat_dao.h"
 //#include "./test_controller/test_rms_handler.h"
 //#include "./test_domain/test_cargo.h"
-#include "./test_domain/test_warehouse.h"
+//#include "./test_domain/test_warehouse.h"
+#include "./test_dao/test_cargo_dao.h"
 
 #include <gtest/gtest.h>
 
