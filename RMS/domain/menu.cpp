@@ -1,4 +1,5 @@
 #include "menu.h"
+#include <iostream>
 
 Menu::Menu()
 {
@@ -55,4 +56,5 @@ void Menu::editMeal(int id, std::string name, std::string description, int price
 void Menu::deleteMeal(int id){
     delete (*_mealList)[id];
     _mealList->erase(id);
+    std::cout<<_mealList->size()<<std::endl;
 }

@@ -21,4 +21,5 @@ debug/socket.o
 debug/cargo.o
 debug/cargo_dao.o
 debug/warehouse.o
+debug/boss_handler.o
 debug/moc_socket.o

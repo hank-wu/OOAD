@@ -21,4 +21,5 @@ release/socket.o
 release/cargo.o
 release/cargo_dao.o
 release/warehouse.o
+release/boss_handler.o
 release/moc_socket.o

@@ -54,7 +54,8 @@ SOURCES += \
     host_dialog.cpp \
     domain/cargo.cpp \
     dao/cargo_dao.cpp \
-    domain/warehouse.cpp
+    domain/warehouse.cpp \
+    boss_handler.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -83,7 +84,8 @@ HEADERS += \
     host_dialog.h \
     domain/cargo.h \
     dao/cargo_dao.h \
-    domain/warehouse.h
+    domain/warehouse.h \
+    boss_handler.h
 
 FORMS += \
     mainwindow.ui \

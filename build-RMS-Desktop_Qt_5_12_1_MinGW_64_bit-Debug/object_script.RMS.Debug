@@ -26,6 +26,7 @@ debug/host_dialog.o
 debug/cargo.o
 debug/cargo_dao.o
 debug/warehouse.o
+debug/boss_handler.o
 debug/moc_mainwindow.o
 debug/moc_socket.o
 debug/moc_customer_manage.o

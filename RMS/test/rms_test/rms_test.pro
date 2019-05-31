@@ -42,7 +42,9 @@ HEADERS += \
         ../../dao/cargo_dao.h   \
     test_domain/test_warehouse.h    \
         ../../domain/warehouse.h   \
-    test_dao/test_cargo_dao.h
+    test_dao/test_cargo_dao.h \
+    test_controller/test_boss_handler.h
+        ../../boss_handler.h   \
 
 
 SOURCES += \
@@ -67,4 +69,5 @@ SOURCES += \
         ../../domain/cargo.cpp   \
         ../../dao/cargo_dao.cpp   \
         ../../domain/warehouse.cpp   \
+        ../../boss_handler.cpp   \
 

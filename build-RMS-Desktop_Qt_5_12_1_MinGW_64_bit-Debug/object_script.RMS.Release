@@ -26,6 +26,7 @@ release/host_dialog.o
 release/cargo.o
 release/cargo_dao.o
 release/warehouse.o
+release/boss_handler.o
 release/moc_mainwindow.o
 release/moc_socket.o
 release/moc_customer_manage.o
