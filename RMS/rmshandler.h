@@ -4,6 +4,7 @@
 #include "socket.h"
 #include "./dao/menu_dao.h"
 #include "./dao/seat_dao.h"
+#include "./dao/cargo_dao.h"
 #include "./domain/seat_list.h"
 #include "./domain/menu.h"
 #include "./domain/order.h"
@@ -13,7 +14,7 @@
 class RMSHandler : public QObject
 {
 public:
-    RMSHandler(SeatDao * seatDao, MenuDao * menuDao);
+    RMSHandler(SeatDao * seatDao, MenuDao * menuDao, CargoDao * cargoDao);
     void Host(QString&, quint16&);
     bool Connect(QString, quint16);
     void SetSocketLisener(const QObject* , const char * );
@@ -47,11 +48,13 @@ public:
     bool createMeal(QString name,QString description,int price);
     bool editMeal(int id,QString name,QString description,int price);
     bool deleteMeal(int id);
+    std::map<int,Cargo *> * getCargoList();
 
 private:
     Socket* _socket;
     SeatDao * _seatDao;
     MenuDao * _menuDao;
+    CargoDao * _cargoDao;
     SeatList * _seatList;
     SeatOrderList * _seatOrderList;
     Menu * _menu;

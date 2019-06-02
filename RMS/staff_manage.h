@@ -28,6 +28,7 @@ private:
     void setSeatContent(QPushButton * status, QTextBrowser * content, int id);
     void clearSeatContent(QPushButton * status, QTextBrowser * content);
     void refreshSeatCombo();
+    std::map<int,Cargo *> * _cargoList;
 private slots:
     void on_determineButton_clicked();
     void on_seatCombo_currentIndexChanged(int index);

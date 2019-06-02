@@ -17,6 +17,18 @@ StaffManage::StaffManage(QWidget *parent, RMSHandler *rmsHandler) :
     refreshSeatName();
     refreshSeat();
     refreshSeatCombo();
+
+    _cargoList = rmsHandler->getCargoList();
+    int index = 0;
+    for(std::map<int, Cargo *>::iterator it = _cargoList->begin(); it != _cargoList->end(); it++){
+        ui->menuTable->insertRow(ui->menuTable->rowCount());
+        QString cargoName = QString::fromLocal8Bit(it->second->getName().c_str());
+        QString cargoAmount = QString::number(it->second->getAmount());
+        ui->menuTable->setItem(index,0,new QTableWidgetItem(cargoName));
+        ui->menuTable->setItem(index,1,new QTableWidgetItem(cargoAmount));
+        index++;
+    }
+    ui->menuTable->horizontalHeader()->show();
 }
 
 StaffManage::~StaffManage()

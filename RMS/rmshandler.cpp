@@ -2,7 +2,8 @@
 #include "socket.h"
 #include <QApplication>
 
-RMSHandler::RMSHandler(SeatDao * seatDao, MenuDao * menuDao): _seatDao(seatDao), _menuDao(menuDao)
+RMSHandler::RMSHandler(SeatDao * seatDao, MenuDao * menuDao, CargoDao * cargoDao):
+    _seatDao(seatDao), _menuDao(menuDao), _cargoDao(cargoDao)
 {
     _socket = new Socket();
     _seatList = new SeatList();
@@ -180,4 +181,15 @@ bool RMSHandler::deleteMeal(int id){
     if(result)
         _menu->deleteMeal(id);
     return result;
+}
+
+//void RMSHandler::refreshCargo(){
+//    std::map<int,Meal *> * mealList = _menuDao->getMealList();
+//    _menu->refresh(mealList);
+
+//}
+
+std::map<int,Cargo *> * RMSHandler::getCargoList(){
+    std::map<int,Cargo *> * cargoList = _cargoDao->getCargoList();
+    return cargoList;
 }

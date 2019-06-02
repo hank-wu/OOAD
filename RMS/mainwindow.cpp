@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QSqlQuery * query;
     SeatDao * seatDao;
     MenuDao * menuDao;
+    CargoDao * cargoDao;
     if(QSqlDatabase::contains("qt_sql_default_connection"))
         mydb = new QSqlDatabase( QSqlDatabase::database("qt_sql_default_connection"));
     else{
@@ -22,8 +23,10 @@ MainWindow::MainWindow(QWidget *parent) :
     query = new QSqlQuery(*mydb);
     seatDao = new SeatDao(query, mydb);
     menuDao = new MenuDao(query, mydb);
+    cargoDao = new CargoDao(query,mydb);
 
-    _rmsHandler = new RMSHandler(seatDao,menuDao);
+    _rmsHandler = new RMSHandler(seatDao,menuDao,cargoDao);
+    _bossHandler = new BossHandler(menuDao);
 
 }
 
@@ -50,5 +53,7 @@ void MainWindow::on_btnStaff_clicked()
 }
 
 void MainWindow::on_btnBoss_clicked(){
-
+    BossManage * bossManage = new BossManage(nullptr,_bossHandler);
+    this->close();
+    bossManage->show();
 }

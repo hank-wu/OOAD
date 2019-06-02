@@ -522,7 +522,7 @@ border: 5px solid red;
      </attribute>
      <column>
       <property name="text">
-       <string>名稱</string>
+       <string>貨物名稱</string>
       </property>
       <property name="font">
        <font>
@@ -533,18 +533,7 @@ border: 5px solid red;
      </column>
      <column>
       <property name="text">
-       <string>價格</string>
-      </property>
-      <property name="font">
-       <font>
-        <family>Agency FB</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>餐點敘述</string>
+       <string>貨物數量</string>
       </property>
       <property name="font">
        <font>

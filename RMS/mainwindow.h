@@ -2,10 +2,13 @@
 #define MAINWINDOW_H
 #include "staff_manage.h"
 #include "login_page.h"
+#include "boss_manage.h"
 #include <QMainWindow>
 #include "rmshandler.h"
+#include "boss_handler.h"
 #include "./dao/menu_dao.h"
 #include "./dao/seat_dao.h"
+#include "./dao/cargo_dao.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +32,7 @@ private:
     LoginPage * lg;
 //    CustomerManage cm;
     RMSHandler * _rmsHandler;
+    BossHandler * _bossHandler;
 
 
 
