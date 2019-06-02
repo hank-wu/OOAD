@@ -27,6 +27,8 @@ release/cargo.o
 release/cargo_dao.o
 release/warehouse.o
 release/boss_handler.o
+release/boss_manage.o
+release/manage_menu_dialog.o
 release/moc_mainwindow.o
 release/moc_socket.o
 release/moc_customer_manage.o
@@ -35,3 +37,5 @@ release/moc_dialog.o
 release/moc_receipt_dilog.o
 release/moc_staff_manage.o
 release/moc_host_dialog.o
+release/moc_boss_manage.o
+release/moc_manage_menu_dialog.o

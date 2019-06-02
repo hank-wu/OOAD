@@ -55,7 +55,9 @@ SOURCES += \
     domain/cargo.cpp \
     dao/cargo_dao.cpp \
     domain/warehouse.cpp \
-    boss_handler.cpp
+    boss_handler.cpp \
+    boss_manage.cpp \
+    manage_menu_dialog.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -85,7 +87,9 @@ HEADERS += \
     domain/cargo.h \
     dao/cargo_dao.h \
     domain/warehouse.h \
-    boss_handler.h
+    boss_handler.h \
+    boss_manage.h \
+    manage_menu_dialog.h
 
 FORMS += \
     mainwindow.ui \
@@ -94,7 +98,9 @@ FORMS += \
     dialog.ui \
     receipt_dilog.ui \
     staff_manage.ui \
-    hostdialog.ui
+    hostdialog.ui \
+    boss_manage.ui \
+    manage_menu_dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

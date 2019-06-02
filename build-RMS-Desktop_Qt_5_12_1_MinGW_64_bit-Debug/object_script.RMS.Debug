@@ -27,6 +27,8 @@ debug/cargo.o
 debug/cargo_dao.o
 debug/warehouse.o
 debug/boss_handler.o
+debug/boss_manage.o
+debug/manage_menu_dialog.o
 debug/moc_mainwindow.o
 debug/moc_socket.o
 debug/moc_customer_manage.o
@@ -35,3 +37,5 @@ debug/moc_dialog.o
 debug/moc_receipt_dilog.o
 debug/moc_staff_manage.o
 debug/moc_host_dialog.o
+debug/moc_boss_manage.o
+debug/moc_manage_menu_dialog.o
