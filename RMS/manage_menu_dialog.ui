@@ -52,9 +52,9 @@
   <widget class="QLabel" name="mealNameLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>50</x>
      <y>10</y>
-     <width>71</width>
+     <width>171</width>
      <height>81</height>
     </rect>
    </property>
@@ -65,15 +65,15 @@
     </font>
    </property>
    <property name="text">
-    <string>名稱：</string>
+    <string>餐點名稱：</string>
    </property>
   </widget>
   <widget class="QLabel" name="mealPriceLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>50</x>
      <y>80</y>
-     <width>71</width>
+     <width>181</width>
      <height>51</height>
     </rect>
    </property>
@@ -97,12 +97,12 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="mealDrescribeLabel_2">
+  <widget class="QLabel" name="mealDrescribeLabel">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>50</x>
      <y>140</y>
-     <width>111</width>
+     <width>171</width>
      <height>51</height>
     </rect>
    </property>
@@ -116,7 +116,7 @@
     <string>餐點敘述：</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="mealDrescribeInput_2">
+  <widget class="QLineEdit" name="mealDrescribeInput">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -128,5 +128,22 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ManageMenuDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>347</x>
+     <y>261</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
