@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>菜單內容</string>
   </property>
   <widget class="QPushButton" name="okButton">
    <property name="geometry">

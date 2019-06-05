@@ -445,7 +445,7 @@ border: 5px solid red;
     <attribute name="title">
      <string>庫存</string>
     </attribute>
-    <widget class="QTableWidget" name="menuTable">
+    <widget class="QTableWidget" name="cargoTable">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -520,6 +520,11 @@ border: 5px solid red;
      <attribute name="verticalHeaderStretchLastSection">
       <bool>false</bool>
      </attribute>
+     <column>
+      <property name="text">
+       <string>貨物編號</string>
+      </property>
+     </column>
      <column>
       <property name="text">
        <string>貨物名稱</string>

@@ -9,6 +9,7 @@
 #include "./domain/menu.h"
 #include "./domain/order.h"
 #include "./domain/seat_order_list.h"
+#include "./domain/warehouse.h"
 #include <map>
 
 class RMSHandler : public QObject
@@ -49,6 +50,8 @@ public:
     bool editMeal(int id,QString name,QString description,int price);
     bool deleteMeal(int id);
     std::map<int,Cargo *> * getCargoList();
+    void refreshCargoList();
+    bool increaseCargoAmount(int id,int amount);
 
 private:
     Socket* _socket;
@@ -59,6 +62,8 @@ private:
     SeatOrderList * _seatOrderList;
     Menu * _menu;
     Order * _order;
+    Warehouse * _warehouse;
+
 
 };
 

@@ -1,6 +1,7 @@
 #include "rmshandler.h"
 #include "socket.h"
 #include <QApplication>
+#include <QDebug>
 
 RMSHandler::RMSHandler(SeatDao * seatDao, MenuDao * menuDao, CargoDao * cargoDao):
     _seatDao(seatDao), _menuDao(menuDao), _cargoDao(cargoDao)
@@ -9,6 +10,7 @@ RMSHandler::RMSHandler(SeatDao * seatDao, MenuDao * menuDao, CargoDao * cargoDao
     _seatList = new SeatList();
     _menu = new Menu();
     _seatOrderList = new SeatOrderList();
+    _warehouse = new Warehouse();
 }
 
 void RMSHandler::Host(QString& IP, quint16& port){
@@ -152,6 +154,7 @@ int RMSHandler::getOrderSeatId(){
 void RMSHandler::closeDB(){
     _seatDao->closeDB();
     _menuDao->closeDB();
+    _cargoDao->closeDB();
 }
 
 bool RMSHandler::createMeal(QString name, QString description, int price){
@@ -190,6 +193,25 @@ bool RMSHandler::deleteMeal(int id){
 //}
 
 std::map<int,Cargo *> * RMSHandler::getCargoList(){
-    std::map<int,Cargo *> * cargoList = _cargoDao->getCargoList();
+    std::map<int,Cargo *> * cargoList;
+    cargoList = _warehouse->getCargoList();
     return cargoList;
+}
+
+void RMSHandler::refreshCargoList(){
+    std::map<int,Cargo *> * cargoList;
+    cargoList = _cargoDao->getCargoList();
+    _warehouse->buildCargoList(cargoList);
+}
+
+bool RMSHandler::increaseCargoAmount(int id, int amount){
+    if(!_warehouse->increaseCargoAmount(id,amount))
+        return false;
+    else{
+        int cargoAmount = _warehouse->getCargoAmount(id);
+        qDebug()<<"cargoAmount = "<<cargoAmount;
+        qDebug()<<"amount = "<<amount;
+        _cargoDao->refresh(id,cargoAmount);
+        return true;
+    }
 }

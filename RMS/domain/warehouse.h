@@ -11,6 +11,8 @@ public:
     bool increaseCargoAmount(int id,int amount);
     bool decreaseCargoAmount(int id,int amount);
     int getCargoAmount(int id);
+    void buildCargoList(std::map<int,Cargo *> * cargoList);
+    std::map<int,Cargo *> * getCargoList();
 
 private:
     int _capacity = 200;

@@ -1,4 +1,6 @@
 #include "warehouse.h"
+#include <QDebug>
+#include <iostream>
 
 Warehouse::Warehouse()
 {
@@ -32,5 +34,17 @@ bool Warehouse::decreaseCargoAmount(int id, int amount){
 int Warehouse::getCargoAmount(int id){
     Cargo * cargo = (*_cargoList)[id];
     return cargo->getAmount();
+}
+
+void Warehouse::buildCargoList(std::map<int, Cargo *> *cargoList){
+//    std::cout<<"AAA001"<<std::endl;
+//    for(std::map<int, Cargo *>::iterator it = cargoList->begin(); it != cargoList->end(); it++){
+//        std::cout<<" cargoName = "<<it->second->getName()<<std::endl;
+//    }
+    _cargoList = cargoList;
+}
+
+std::map<int, Cargo *> * Warehouse::getCargoList(){
+    return _cargoList;
 }
 

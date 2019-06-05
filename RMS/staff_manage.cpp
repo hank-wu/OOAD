@@ -1,6 +1,8 @@
 #include "staff_manage.h"
 #include "ui_staff_manage.h"
 #include <QHostInfo>
+#include <QInputDialog>
+#include <QMessageBox>
 
 StaffManage::StaffManage(QWidget *parent, RMSHandler *rmsHandler) :
     QWidget(parent),
@@ -18,17 +20,20 @@ StaffManage::StaffManage(QWidget *parent, RMSHandler *rmsHandler) :
     refreshSeat();
     refreshSeatCombo();
 
+    rmsHandler->refreshCargoList();
     _cargoList = rmsHandler->getCargoList();
     int index = 0;
     for(std::map<int, Cargo *>::iterator it = _cargoList->begin(); it != _cargoList->end(); it++){
-        ui->menuTable->insertRow(ui->menuTable->rowCount());
+        ui->cargoTable->insertRow(ui->cargoTable->rowCount());
+        QString cargoId = QString::number(it->second->getId());
         QString cargoName = QString::fromLocal8Bit(it->second->getName().c_str());
         QString cargoAmount = QString::number(it->second->getAmount());
-        ui->menuTable->setItem(index,0,new QTableWidgetItem(cargoName));
-        ui->menuTable->setItem(index,1,new QTableWidgetItem(cargoAmount));
+        ui->cargoTable->setItem(index,0,new QTableWidgetItem(cargoId));
+        ui->cargoTable->setItem(index,1,new QTableWidgetItem(cargoName));
+        ui->cargoTable->setItem(index,2,new QTableWidgetItem(cargoAmount));
         index++;
     }
-    ui->menuTable->horizontalHeader()->show();
+    ui->cargoTable->horizontalHeader()->show();
 }
 
 StaffManage::~StaffManage()
@@ -188,4 +193,41 @@ void StaffManage::onReceiveSocket(QString input){
 
 void StaffManage::on_seatCombo_currentIndexChanged(int index)
 {
+}
+
+void StaffManage::on_addButton_clicked(){
+    int curRow = ui->cargoTable->currentRow();
+    if(curRow < 0){
+        QString dlgTitle = "錯誤";
+        QString strInfo = "請先選擇一項貨物";
+        QMessageBox::warning(this,dlgTitle,strInfo);
+    }
+    else{
+        qDebug()<<"row = "<<ui->cargoTable->currentRow();
+        int cargoId = ui->cargoTable->item(ui->cargoTable->currentRow(),0)->text().toInt();
+
+        QString dlgTitle = "新增貨物輸量";
+        QString txtLabel = "貨物編號" + cargoId;
+        int defaultValue = 10;
+        int minValue = 1;
+        int maxValue = 200;
+        int stepValue = 1;
+        bool ok = false;
+        int inputValue = QInputDialog::getInt(this,dlgTitle,txtLabel,
+                                              defaultValue,minValue,maxValue,
+                                              stepValue,&ok);
+        qDebug()<<"cargoid = "<<cargoId;
+        qDebug()<<"addAmount = "<<inputValue;
+        if(!_rmsHandler->increaseCargoAmount(cargoId,inputValue)){
+            QString dlgTitle = "錯誤";
+            QString strInfo = "新增失敗";
+            QMessageBox::warning(this,dlgTitle,strInfo);
+        }
+        ui->cargoTable->item(ui->cargoTable->currentRow(),2)->setText(QString::number((*_cargoList)[cargoId]->getAmount()));
+    }
+
+}
+
+void StaffManage::on_removeButton_clicked(){
+
 }
