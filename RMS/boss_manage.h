@@ -28,7 +28,7 @@ private slots:
     void on_createBtn();
     void on_editBtn();
     void on_deleteBtn();
-    void createMenuSuccess();
+    void manageMenuSuccess();
     void cancelMenu();
 };
 

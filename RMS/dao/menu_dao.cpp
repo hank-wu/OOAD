@@ -81,7 +81,7 @@ bool MenuDao::deleteMeal(int id){
 
     QString sqlStr = "DELETE FROM menu WHERE id = ";
     sqlStr += QString::number(id);
-//    qDebug()<< sqlStr;
+    qDebug()<<"delete sqlStr"<< sqlStr;
 //    qDebug()<< _query->exec(sqlStr);
     result = _query->exec(sqlStr);
 
