@@ -4,8 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-QT       += network
+QT       += core gui    \
+            network \
+            sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,7 +33,31 @@ SOURCES += \
     socket.cpp \
     usecase/manage_order.cpp \
     domain/seat_list.cpp \
-    domain/seat.cpp
+    domain/seat.cpp \
+    domain/meal.cpp \
+    domain/meal_list.cpp \
+    domain/order.cpp \
+    domain/seat_order.cpp \
+    domain/seat_order_list.cpp \
+    domain/menu.cpp \
+    domain/order_item.cpp \
+    domain/bill.cpp \
+    domain/receipt.cpp \
+    dao/menu_dao.cpp \
+    dao/seat_dao.cpp \
+    domain/order_pair.cpp \
+    customer_manage.cpp \
+    login_page.cpp \
+    dialog.cpp \
+    receipt_dilog.cpp \
+    staff_manage.cpp \
+    host_dialog.cpp \
+    domain/cargo.cpp \
+    dao/cargo_dao.cpp \
+    domain/warehouse.cpp \
+    boss_handler.cpp \
+    boss_manage.cpp \
+    manage_menu_dialog.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -40,10 +65,42 @@ HEADERS += \
     socket.h \
     usecase/manage_order.h \
     domain/seat_list.h \
-    domain/seat.h
+    domain/seat.h \
+    domain/meal.h \
+    domain/meal_list.h \
+    domain/order.h \
+    domain/seat_order.h \
+    domain/seat_order_list.h \
+    domain/menu.h \
+    domain/order_item.h \
+    domain/bill.h \
+    domain/receipt.h \
+    dao/menu_dao.h \
+    dao/seat_dao.h \
+    domain/order_pair.h \
+    customer_manage.h \
+    login_page.h \
+    dialog.h \
+    receipt_dilog.h \
+    staff_manage.h \
+    host_dialog.h \
+    domain/cargo.h \
+    dao/cargo_dao.h \
+    domain/warehouse.h \
+    boss_handler.h \
+    boss_manage.h \
+    manage_menu_dialog.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    customer_manage.ui \
+    login_page.ui \
+    dialog.ui \
+    receipt_dilog.ui \
+    staff_manage.ui \
+    hostdialog.ui \
+    boss_manage.ui \
+    manage_menu_dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

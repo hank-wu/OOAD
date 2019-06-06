@@ -14,3 +14,7 @@ int ManageOrder::getSeatCount(){
     return _seatList->getCount();
 }
 
+SeatOrderList * ManageOrder::showSeatOrder(){
+    return _seatOrderList;
+}
+
