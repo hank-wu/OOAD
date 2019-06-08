@@ -13,6 +13,7 @@ BossManage::BossManage(QWidget *parent, BossHandler * bossHandler) :
     connect(ui->ModifyButton,SIGNAL(clicked()),this,SLOT(on_editBtn()));
     connect(ui->DeleteButton,SIGNAL(clicked()),this,SLOT(on_deleteBtn()));
 
+    ui->menuTable->setStyleSheet("background-color: rgb(220,220,220)");
     bossHandler->refreshMenu();
     _mealList = bossHandler->showMenu();
     refreshMenuTable();
@@ -33,24 +34,33 @@ void BossManage::on_createBtn(){
 
 void BossManage::on_editBtn(){
     qDebug()<<"row = "<<ui->menuTable->currentRow();
-    int mealId = ui->menuTable->currentRow()+1;
-    QString mealName = QString::fromLocal8Bit( (*_mealList)[mealId]->getName().c_str() );
-    QString mealDescription = QString::fromLocal8Bit( (*_mealList)[mealId]->getDescription().c_str() );
-    int mealPrice = (*_mealList)[mealId]->getPrice();
-    _manageMenuDialog = new ManageMenuDialog(this,_bossHandler,
-                                             mealId,
-                                             mealName,
-                                             mealDescription,
-                                             mealPrice);
-    connect(_manageMenuDialog, SIGNAL(accepted()), this, SLOT(manageMenuSuccess()));
-    connect(_manageMenuDialog, SIGNAL(rejected()), this, SLOT(cancelMenu()));
-    _manageMenuDialog->exec();
+
+    if(ui->menuTable->currentRow() < 0){
+        QString dlgTitle = "錯誤";
+        QString strInfo = "請選點選要編輯行";
+        QMessageBox::warning(this,dlgTitle,strInfo);
+    }
+    else{
+        int mealId = ui->menuTable->item(ui->menuTable->currentRow(),0)->text().toInt();
+        QString mealName = QString::fromLocal8Bit( (*_mealList)[mealId]->getName().c_str() );
+        QString mealDescription = QString::fromLocal8Bit( (*_mealList)[mealId]->getDescription().c_str() );
+        int mealPrice = (*_mealList)[mealId]->getPrice();
+        _manageMenuDialog = new ManageMenuDialog(this,_bossHandler,
+                                                 mealId,
+                                                 mealName,
+                                                 mealDescription,
+                                                 mealPrice);
+        connect(_manageMenuDialog, SIGNAL(accepted()), this, SLOT(manageMenuSuccess()));
+        connect(_manageMenuDialog, SIGNAL(rejected()), this, SLOT(cancelMenu()));
+        _manageMenuDialog->exec();
+    }
+
 }
 
 void BossManage::on_deleteBtn(){
     qDebug()<<"delete row = "<<ui->menuTable->currentRow();
-    int mealId = ui->menuTable->currentRow()+1;
-    if(mealId < 1){
+
+    if(ui->menuTable->currentRow() < 0){
         QString dlgTitle = "錯誤";
         QString strInfo = "請選點選要刪除行";
         QMessageBox::warning(this,dlgTitle,strInfo);
@@ -61,7 +71,8 @@ void BossManage::on_deleteBtn(){
             QString(tr("確認要刪除?")),
             QMessageBox::Yes | QMessageBox::No);
         if (button == QMessageBox::Yes) {
-            /*bool result = _bossHandler->deleteMeal(mealId);
+            int mealId = ui->menuTable->item(ui->menuTable->currentRow(),0)->text().toInt();
+            bool result = _bossHandler->deleteMeal(mealId);
             qDebug()<<"delete result = "<<result;
             if(!result){
                 QMessageBox::StandardButton button;
@@ -69,8 +80,7 @@ void BossManage::on_deleteBtn(){
                     QString(tr("資料庫更新失敗!")),
                     QMessageBox::Yes);
                 return;
-            }*/
-            _bossHandler->deleteMeal(mealId);
+            }
             ui->menuTable->clearContents();
             refreshMenuTable();
         }
@@ -92,13 +102,15 @@ void BossManage::refreshMenuTable(){
     int index = 0;
     for(std::map<int, Meal * >::iterator it = _mealList->begin(); it != _mealList->end();it++){
         ui->menuTable->insertRow(ui->menuTable->rowCount());
+        QString id = QString::number(it->second->getId());
         QString name = QString::fromLocal8Bit(it->second->getName().c_str());
         QString price = QString::number(it->second->getPrice());
         QString description = QString::fromLocal8Bit(it->second->getDescription().c_str());
-        qDebug()<<"name = "<<name;
-        ui->menuTable->setItem(index,0,new QTableWidgetItem(name));
-        ui->menuTable->setItem(index,1,new QTableWidgetItem(price));
-        ui->menuTable->setItem(index,2,new QTableWidgetItem(description));
+//        qDebug()<<"name = "<<name;
+        ui->menuTable->setItem(index,0,new QTableWidgetItem(id));
+        ui->menuTable->setItem(index,1,new QTableWidgetItem(name));
+        ui->menuTable->setItem(index,2,new QTableWidgetItem(price));
+        ui->menuTable->setItem(index,3,new QTableWidgetItem(description));
         index++;
     }
     ui->menuTable->horizontalHeader()->show();

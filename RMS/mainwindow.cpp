@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "host_dialog.h"
+#include <QPalette>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -53,7 +54,12 @@ void MainWindow::on_btnStaff_clicked()
 }
 
 void MainWindow::on_btnBoss_clicked(){
+    QPalette pal = palette();
+    pal.setColor(QPalette::Background, QColor(165,165,165));
+
     BossManage * bossManage = new BossManage(nullptr,_bossHandler);
+    bossManage->setAutoFillBackground(true);
+    bossManage->setPalette(pal);
     this->close();
     bossManage->show();
 }

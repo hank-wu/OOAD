@@ -203,11 +203,11 @@ void StaffManage::on_addButton_clicked(){
         QMessageBox::warning(this,dlgTitle,strInfo);
     }
     else{
-        qDebug()<<"row = "<<ui->cargoTable->currentRow();
         int cargoId = ui->cargoTable->item(ui->cargoTable->currentRow(),0)->text().toInt();
+        qDebug()<<"cargoId = "<<cargoId;
 
         QString dlgTitle = "新增貨物輸量";
-        QString txtLabel = "貨物編號" + cargoId;
+        QString txtLabel = "貨物編號" + QString::number(cargoId);
         int defaultValue = 10;
         int minValue = 1;
         int maxValue = 200;
@@ -216,14 +216,16 @@ void StaffManage::on_addButton_clicked(){
         int inputValue = QInputDialog::getInt(this,dlgTitle,txtLabel,
                                               defaultValue,minValue,maxValue,
                                               stepValue,&ok);
-        qDebug()<<"cargoid = "<<cargoId;
-        qDebug()<<"addAmount = "<<inputValue;
-        if(!_rmsHandler->increaseCargoAmount(cargoId,inputValue)){
-            QString dlgTitle = "錯誤";
-            QString strInfo = "新增失敗";
-            QMessageBox::warning(this,dlgTitle,strInfo);
+        if(ok){
+            qDebug()<<"cargoid = "<<cargoId;
+            qDebug()<<"addAmount = "<<inputValue;
+            if(!_rmsHandler->increaseCargoAmount(cargoId,inputValue)){
+                QString dlgTitle = "錯誤";
+                QString strInfo = "新增失敗";
+                QMessageBox::warning(this,dlgTitle,strInfo);
+            }
+            ui->cargoTable->item(ui->cargoTable->currentRow(),2)->setText(QString::number((*_cargoList)[cargoId]->getAmount()));
         }
-        ui->cargoTable->item(ui->cargoTable->currentRow(),2)->setText(QString::number((*_cargoList)[cargoId]->getAmount()));
     }
 
 }

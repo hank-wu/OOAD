@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>806</width>
-    <height>611</height>
+    <width>1012</width>
+    <height>613</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
     <rect>
      <x>30</x>
      <y>30</y>
-     <width>641</width>
+     <width>831</width>
      <height>541</height>
     </rect>
    </property>
@@ -90,6 +90,11 @@
    </attribute>
    <column>
     <property name="text">
+     <string>菜單編號</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
      <string>名稱</string>
     </property>
     <property name="font">
@@ -125,8 +130,8 @@
   <widget class="QPushButton" name="AddButton">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>260</y>
+     <x>890</x>
+     <y>250</y>
      <width>91</width>
      <height>71</height>
     </rect>
@@ -144,8 +149,8 @@
   <widget class="QPushButton" name="ModifyButton">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>380</y>
+     <x>890</x>
+     <y>360</y>
      <width>91</width>
      <height>71</height>
     </rect>
@@ -163,8 +168,8 @@
   <widget class="QPushButton" name="DeleteButton">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>500</y>
+     <x>890</x>
+     <y>480</y>
      <width>91</width>
      <height>71</height>
     </rect>
