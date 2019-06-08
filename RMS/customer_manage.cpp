@@ -95,6 +95,9 @@ void CustomerManage::addToTable()
 
             ui->orderTable->setItem(index,1,new QTableWidgetItem(QString::number(amount)));
             ui->orderTable->setItem(index,2,new QTableWidgetItem(QString::number(subtotal)));
+
+            //cargo
+            _rmsHandler->decreaseCargoAmount(mealId,amount);
         }
 
     }

@@ -210,6 +210,18 @@ bool RMSHandler::increaseCargoAmount(int id, int amount){
     }
 }
 
+bool RMSHandler::decreaseCargoAmount(int id, int amount){
+    if(!_warehouse->decreaseCargoAmount(id,amount))
+        return false;
+    else{
+        int cargoAmount = _warehouse->getCargoAmount(id);
+        qDebug()<<"cargoAmount = "<<cargoAmount;
+        qDebug()<<"amount = "<<amount;
+        _cargoDao->refresh(id,cargoAmount);
+        return true;
+    }
+}
+
 int RMSHandler::getCargoAmount(int id){
     return _warehouse->getCargoAmount(id);
 }

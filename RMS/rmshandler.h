@@ -52,6 +52,7 @@ public:
     std::map<int,Cargo *> * getCargoList();
     void refreshCargoList();
     bool increaseCargoAmount(int id,int amount);
+    bool decreaseCargoAmount(int id,int amount);
     int getCargoAmount(int id);
 
 private:

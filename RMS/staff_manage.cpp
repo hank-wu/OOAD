@@ -20,20 +20,7 @@ StaffManage::StaffManage(QWidget *parent, RMSHandler *rmsHandler) :
     refreshSeat();
     refreshSeatCombo();
 
-    rmsHandler->refreshCargoList();
-    _cargoList = rmsHandler->getCargoList();
-    int index = 0;
-    for(std::map<int, Cargo *>::iterator it = _cargoList->begin(); it != _cargoList->end(); it++){
-        ui->cargoTable->insertRow(ui->cargoTable->rowCount());
-        QString cargoId = QString::number(it->second->getId());
-        QString cargoName = QString::fromLocal8Bit(it->second->getName().c_str());
-        QString cargoAmount = QString::number(it->second->getAmount());
-        ui->cargoTable->setItem(index,0,new QTableWidgetItem(cargoId));
-        ui->cargoTable->setItem(index,1,new QTableWidgetItem(cargoName));
-        ui->cargoTable->setItem(index,2,new QTableWidgetItem(cargoAmount));
-        index++;
-    }
-    ui->cargoTable->horizontalHeader()->show();
+    refreshCargoTable();
 }
 
 StaffManage::~StaffManage()
@@ -189,6 +176,10 @@ void StaffManage::onReceiveSocket(QString input){
             break;
         }
     }
+
+    //cargoTable
+    ui->cargoTable->clearContents();
+    refreshCargoTable();
 }
 
 void StaffManage::on_seatCombo_currentIndexChanged(int index)
@@ -232,4 +223,21 @@ void StaffManage::on_addButton_clicked(){
 
 void StaffManage::on_removeButton_clicked(){
 
+}
+
+void StaffManage::refreshCargoTable(){
+    _rmsHandler->refreshCargoList();
+    _cargoList = _rmsHandler->getCargoList();
+    int index = 0;
+    for(std::map<int, Cargo *>::iterator it = _cargoList->begin(); it != _cargoList->end(); it++){
+        ui->cargoTable->insertRow(ui->cargoTable->rowCount());
+        QString cargoId = QString::number(it->second->getId());
+        QString cargoName = QString::fromLocal8Bit(it->second->getName().c_str());
+        QString cargoAmount = QString::number(it->second->getAmount());
+        ui->cargoTable->setItem(index,0,new QTableWidgetItem(cargoId));
+        ui->cargoTable->setItem(index,1,new QTableWidgetItem(cargoName));
+        ui->cargoTable->setItem(index,2,new QTableWidgetItem(cargoAmount));
+        index++;
+    }
+    ui->cargoTable->horizontalHeader()->show();
 }
