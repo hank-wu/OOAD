@@ -21,8 +21,11 @@ CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
     //reset menu&seatList
     _mealList = rmsHandler->showMenu();
     _seatList = rmsHandler->showSeatList();
+    rmsHandler->refreshCargoList();
     int index = 0;
     for(std::map<int, Meal * >::iterator it = _mealList->begin(); it != _mealList->end();it++){
+        int cargoAmount = _rmsHandler->getCargoAmount(it->second->getId());
+
         ui->menuTable->insertRow(ui->menuTable->rowCount());
         qDebug()<<"test"<<ui->menuTable->rowCount();
         QString name = QString::fromLocal8Bit(it->second->getName().c_str());
@@ -32,7 +35,10 @@ CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
         ui->menuTable->setItem(index,1,new QTableWidgetItem(price));
         ui->menuTable->setItem(index,2,new QTableWidgetItem(description));
         index++;
-        ui->mealCombo->addItem(QString(name),it->second->getId());
+
+        if(cargoAmount > 0)
+            ui->mealCombo->addItem(QString(name),it->second->getId());
+
     }
 
     refreshSeatName();
@@ -65,21 +71,32 @@ void CustomerManage::ensureSeat()
 
 void CustomerManage::addToTable()
 {
-    ui->payBtn->setDisabled(false);
     int mealId = ui->mealCombo->currentData().toInt();
+    qDebug()<<"mealId = "<<mealId;
     if(mealId !=0){
-        int index = ui->orderTable->rowCount();
-        ui->orderTable->insertRow(ui->orderTable->rowCount());
-        QString name = QString::fromLocal8Bit((*_mealList)[mealId]->getName().c_str());
-        ui->orderTable->setItem(index,0,new QTableWidgetItem(name));
-
+        int cargoAmount = _rmsHandler->getCargoAmount(mealId);
         int amount = ui->amountCombo->currentText().toInt();
-        int price =(*_mealList)[mealId]->getPrice();
-        int subtotal = price * amount;
-        _rmsHandler->enterOrderItem(mealId,amount);
+        if(cargoAmount < amount){
+            QString dlgTitle = "抱歉";
+            QString strInfo = "貨物數量不足";
+            QMessageBox::warning(this,dlgTitle,strInfo);
+        }
+        else {
+            ui->payBtn->setDisabled(false);
 
-        ui->orderTable->setItem(index,1,new QTableWidgetItem(QString::number(amount)));
-        ui->orderTable->setItem(index,2,new QTableWidgetItem(QString::number(subtotal)));
+            int index = ui->orderTable->rowCount();
+            ui->orderTable->insertRow(ui->orderTable->rowCount());
+            QString name = QString::fromLocal8Bit((*_mealList)[mealId]->getName().c_str());
+            ui->orderTable->setItem(index,0,new QTableWidgetItem(name));
+
+            int price =(*_mealList)[mealId]->getPrice();
+            int subtotal = price * amount;
+            _rmsHandler->enterOrderItem(mealId,amount);
+
+            ui->orderTable->setItem(index,1,new QTableWidgetItem(QString::number(amount)));
+            ui->orderTable->setItem(index,2,new QTableWidgetItem(QString::number(subtotal)));
+        }
+
     }
 }
 

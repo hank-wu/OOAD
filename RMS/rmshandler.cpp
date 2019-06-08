@@ -186,12 +186,6 @@ bool RMSHandler::deleteMeal(int id){
     return result;
 }
 
-//void RMSHandler::refreshCargo(){
-//    std::map<int,Meal *> * mealList = _menuDao->getMealList();
-//    _menu->refresh(mealList);
-
-//}
-
 std::map<int,Cargo *> * RMSHandler::getCargoList(){
     std::map<int,Cargo *> * cargoList;
     cargoList = _warehouse->getCargoList();
@@ -214,4 +208,8 @@ bool RMSHandler::increaseCargoAmount(int id, int amount){
         _cargoDao->refresh(id,cargoAmount);
         return true;
     }
+}
+
+int RMSHandler::getCargoAmount(int id){
+    return _warehouse->getCargoAmount(id);
 }
