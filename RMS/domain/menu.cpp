@@ -3,7 +3,7 @@
 
 Menu::Menu()
 {
-
+    _mealList = new std::map<int,Meal *>();
 }
 
 int Menu::getNumberOfMeals(){

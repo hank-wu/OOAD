@@ -13,6 +13,7 @@ CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
     connect(ui->ensureBtn,SIGNAL(clicked()),this,SLOT(ensureSeat()));
     connect(ui->enterOrderBtn,SIGNAL(clicked()),this,SLOT(addToTable()));
     connect(ui->payBtn,SIGNAL(clicked()),this,SLOT(showTotalAmount()));
+    rmsHandler->SetDisconnectedListener(this,SLOT(onDisconnect()));
     rmsHandler->refreshMenu();
     rmsHandler->refreshSeatList();
 
@@ -37,7 +38,7 @@ CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
         index++;
 
         if(cargoAmount > 0)
-            ui->mealCombo->addItem(QString(name),it->second->getId());
+            ui->mealCombo->addItem(name,it->second->getId());
 
     }
 
@@ -74,9 +75,9 @@ void CustomerManage::addToTable()
     int mealId = ui->mealCombo->currentData().toInt();
     qDebug()<<"mealId = "<<mealId;
     if(mealId !=0){
-        int cargoAmount = _rmsHandler->getCargoAmount(mealId);
+//        int cargoAmount = _rmsHandler->getCargoAmount(mealId);
         int amount = ui->amountCombo->currentText().toInt();
-        if(cargoAmount < amount){
+        if(!_rmsHandler->checkCargoAmount(mealId,amount)){
             QString dlgTitle = "抱歉";
             QString strInfo = "貨物數量不足";
             QMessageBox::warning(this,dlgTitle,strInfo);
@@ -97,7 +98,7 @@ void CustomerManage::addToTable()
             ui->orderTable->setItem(index,2,new QTableWidgetItem(QString::number(subtotal)));
 
             //cargo
-            _rmsHandler->decreaseCargoAmount(mealId,amount);
+            //_rmsHandler->decreaseCargoAmount(mealId,amount);
         }
 
     }
@@ -232,7 +233,7 @@ void CustomerManage::refreshSeatName(){
 
 void CustomerManage::on_mealCombo_currentIndexChanged(int index)
 {
-    if(index == 0){
+    if(index == 0 || index == -1){
         ui->mealDescription->clear();
         ui->mealPrice->clear();
     }else if(index != 0){
@@ -259,6 +260,7 @@ void CustomerManage::paymentSuccess()
     initViewStatus();
     refreshSeat();
     refreshSeatCombo();
+    refreshMenuCombo();
     delete payment;
 }
 
@@ -270,15 +272,46 @@ void CustomerManage::onReceiveSocket(QString input){
     int seatId = input.split("\n")[0].toInt();
     qDebug()<<seatId;
     int selectSeatId = ui->seatCombo->currentData().toInt();
+    int selectMealId = ui->mealCombo->currentData().toInt();
 
-    _rmsHandler->refreshSeat(seatId);
-    refreshSeat();
-    refreshSeatCombo();
+    if(seatId > 0){
+        _rmsHandler->refreshSeat(seatId);
+        refreshSeat();
+        refreshSeatCombo();
 
-    for(int i = 0; i<ui->seatCombo->count();i++){
-        if(selectSeatId == ui->seatCombo->itemData(i).toInt()){
-            ui->seatCombo->setCurrentIndex(i);
+        for(int i = 0; i<ui->seatCombo->count();i++){
+            if(selectSeatId == ui->seatCombo->itemData(i).toInt()){
+                ui->seatCombo->setCurrentIndex(i);
+                break;
+            }
+        }
+    }
+
+    refreshMenuCombo();
+    for(int i=0; i<ui->mealCombo->count();i++){
+        if(selectMealId == ui->mealCombo->itemData(i).toInt()){
+            ui->mealCombo->setCurrentIndex(i);
             break;
         }
     }
+}
+
+void CustomerManage::refreshMenuCombo(){
+    ui->mealCombo->clear();
+    ui->mealCombo->addItem("選擇餐點",0);
+    _rmsHandler->refreshCargoList();
+    for(std::map<int, Meal * >::iterator it = _mealList->begin(); it != _mealList->end();it++){
+        int cargoAmount = _rmsHandler->getCargoAmount(it->second->getId());
+        QString name = QString::fromLocal8Bit(it->second->getName().c_str());
+        if(cargoAmount > 0)
+            ui->mealCombo->addItem(QString(name),it->second->getId());
+    }
+}
+
+void CustomerManage::onDisconnect(){
+    qDebug()<<"staff closed";
+    QString dlgTitle = "錯誤";
+    QString strInfo = "異常錯誤發生，請通知服務員";
+    QMessageBox::warning(this,dlgTitle,strInfo);
+    this->close();
 }

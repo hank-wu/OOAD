@@ -23,6 +23,7 @@ public:
     Receipt * getReceipt();
     int getSeatId();
     std::vector<OrderPair> * getOrderPair();
+    int getMealAmount(int id);
 
 private:
     Seat *_seat;

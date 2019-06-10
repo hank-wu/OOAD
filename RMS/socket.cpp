@@ -44,10 +44,9 @@ bool Socket::Connect(QString IP, quint16 port){
 }
 
 void Socket::notify(QString output){
-    qInfo() << "test";
     QByteArray str = output.toUtf8();
     str.append("\n");
-    qInfo() << "nonono"<<_socket->write(str);
+    _socket->write(str);
 }
 
 bool Socket::getConnection(){

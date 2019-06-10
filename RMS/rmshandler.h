@@ -54,6 +54,8 @@ public:
     bool increaseCargoAmount(int id,int amount);
     bool decreaseCargoAmount(int id,int amount);
     int getCargoAmount(int id);
+    bool checkCargoAmount(int id,int amount);
+    void clearAllSeat();
 
 private:
     Socket* _socket;

@@ -216,6 +216,7 @@ void StaffManage::on_addButton_clicked(){
                 QMessageBox::warning(this,dlgTitle,strInfo);
             }
             ui->cargoTable->item(ui->cargoTable->currentRow(),2)->setText(QString::number((*_cargoList)[cargoId]->getAmount()));
+            _rmsHandler->notify("0");
         }
     }
 
@@ -240,4 +241,19 @@ void StaffManage::refreshCargoTable(){
         index++;
     }
     ui->cargoTable->horizontalHeader()->show();
+}
+
+void StaffManage::closeEvent(QCloseEvent *event)
+{
+    QMessageBox::StandardButton button;
+    button = QMessageBox::question(this, tr("關閉程式"),
+        QString(tr("確定要離開?")),
+        QMessageBox::Yes | QMessageBox::No);
+
+    if (button == QMessageBox::No) {
+        event->ignore();
+    }
+    if (button == QMessageBox::Yes) {
+        _rmsHandler->clearAllSeat();
+    }
 }

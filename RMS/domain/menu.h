@@ -18,7 +18,7 @@ public:
     void deleteMeal(int id);
 
 private:
-    std::map<int,Meal *> *_mealList = new std::map<int,Meal *>();
+    std::map<int,Meal *> *_mealList;
 };
 
 #endif // MENU_H

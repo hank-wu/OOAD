@@ -74,6 +74,7 @@ void RMSHandler::refreshSeatOrderList(){
         std::vector<OrderPair> * orderPairList = _seatDao->getOrderPair(i);
         for(std::vector<OrderPair>::iterator it = orderPairList->begin(); it!= orderPairList->end(); it++){
             Meal * meal = _menu->getMeal(it->getId());
+            qDebug()<<"meal id = "<<meal->getId();
             _seatOrderList->addOrder(i,meal,(*it).getAmount());
         }
     }
@@ -130,12 +131,20 @@ void RMSHandler::refreshSeat(int seatId){
     _seatList->refresh(seatId,seat);
 }
 void RMSHandler::completeOrder(){
+    std::vector<OrderPair> * orderPair = _order->getOrderPair();
+    for(std::vector<OrderPair>::iterator it = orderPair->begin(); it != orderPair->end(); it++){
+        int originalAmount = _warehouse->getCargoAmount(it->getId());
+        _warehouse->decreaseCargoAmount(it->getId(),it->getAmount());
+        _cargoDao->refresh(it->getId(),originalAmount - it->getAmount());
+    }
+
     int seatId = _order->getSeatId();
     _seatDao->setSeatUsed(seatId);
     _seatDao->setSeatOrderPair(seatId,_order->getOrderPair());
     Seat * seat = _seatDao->getSeat(seatId);
     _seatList->refresh(seatId,seat);
     delete _order;
+
 }
 
 void RMSHandler::clearSeat(int seatId){
@@ -224,4 +233,16 @@ bool RMSHandler::decreaseCargoAmount(int id, int amount){
 
 int RMSHandler::getCargoAmount(int id){
     return _warehouse->getCargoAmount(id);
+}
+
+bool RMSHandler::checkCargoAmount(int id, int amount){
+    int cargoAmount = _warehouse->getCargoAmount(id);
+    int orderAmount = _order->getMealAmount(id);
+    return (amount + orderAmount) <= cargoAmount;
+}
+
+void RMSHandler::clearAllSeat(){
+    for(int i=1;i<=10;i++){
+        clearSeat(i);
+    }
 }

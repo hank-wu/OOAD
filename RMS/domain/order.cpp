@@ -77,3 +77,14 @@ std::vector<OrderPair> * Order::getOrderPair(){
     }
     return orderPairList;
 }
+
+int Order::getMealAmount(int id){
+    int amount = 0;
+    for(std::map<int, OrderItem*>::iterator it=_orderItemList->begin();it != _orderItemList->end();it++){
+        Meal * meal = it->second->getMeal();
+        if(meal->getId() == id){
+            amount += it->second->getQuantity();
+        }
+    }
+    return amount;
+}

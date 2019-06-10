@@ -24,6 +24,7 @@ private slots:
     void paymentSuccess();
     void cancelPayment();
     void onReceiveSocket(QString input);
+    void onDisconnect();
 
 private:
     Ui::CustomerManage *ui;
@@ -35,6 +36,7 @@ private:
     std::map<int, Seat * > * _seatList;
     Dialog * payment;
     void refreshSeatCombo();
+    void refreshMenuCombo();
 };
 
 #endif // CUSTOMER_MANAGE_H

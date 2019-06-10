@@ -17,10 +17,11 @@ public:
     void setPrice(int price);
 
 private:
+    int _id;
     string _name;
     string _description;
     int _price;
-    int _id;
+
 };
 
 #endif // MEAL_H

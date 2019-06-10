@@ -6,6 +6,7 @@
 #include "domain/order_item.h"
 #include <QPushButton>
 #include <QTextBrowser>
+#include <QCloseEvent>
 
 namespace Ui {
 class StaffManage;
@@ -30,6 +31,7 @@ private:
     void refreshSeatCombo();
     std::map<int,Cargo *> * _cargoList;
     void refreshCargoTable();
+    void closeEvent(QCloseEvent *event);
 private slots:
     void on_determineButton_clicked();
     void on_seatCombo_currentIndexChanged(int index);
