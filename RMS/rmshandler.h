@@ -46,9 +46,6 @@ public:
     void refreshSeatOrder(int seatId);
     void refreshSeat(int seatId);
     void closeDB();
-    bool createMeal(QString name,QString description,int price);
-    bool editMeal(int id,QString name,QString description,int price);
-    bool deleteMeal(int id);
     std::map<int,Cargo *> * getCargoList();
     void refreshCargoList();
     bool increaseCargoAmount(int id,int amount);

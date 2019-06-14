@@ -166,35 +166,6 @@ void RMSHandler::closeDB(){
     _cargoDao->closeDB();
 }
 
-bool RMSHandler::createMeal(QString name, QString description, int price){
-    bool result = false;
-    result = _menuDao->createMeal(name,description,price);
-    std::string stdName = string((const char *)name.toLocal8Bit());
-    std::string stdDescription = string((const char *)description.toLocal8Bit());
-
-    if(result)
-        _menu->createMeal(stdName,stdDescription,price);
-    return result;
-}
-
-bool RMSHandler::editMeal(int id, QString name, QString description, int price){
-    bool result = false;
-    result = _menuDao->editMeal(id,name,description,price);
-    std::string stdName = string((const char *)name.toLocal8Bit());
-    std::string stdDescription = string((const char *)description.toLocal8Bit());
-    if(result)
-        _menu->editMeal(id,stdName,stdDescription,price);
-    return result;
-}
-
-bool RMSHandler::deleteMeal(int id){
-    bool result = false;
-    result = _menuDao->deleteMeal(id);
-    if(result)
-        _menu->deleteMeal(id);
-    return result;
-}
-
 std::map<int,Cargo *> * RMSHandler::getCargoList(){
     std::map<int,Cargo *> * cargoList;
     cargoList = _warehouse->getCargoList();

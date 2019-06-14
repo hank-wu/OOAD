@@ -10,6 +10,7 @@ CustomerManage::CustomerManage(QWidget *parent,RMSHandler * rmsHandler) :
     _rmsHandler(rmsHandler)
 {
     ui->setupUi(this);
+    ui->removeBtn->setVisible(false);
     connect(ui->ensureBtn,SIGNAL(clicked()),this,SLOT(ensureSeat()));
     connect(ui->enterOrderBtn,SIGNAL(clicked()),this,SLOT(addToTable()));
     connect(ui->payBtn,SIGNAL(clicked()),this,SLOT(showTotalAmount()));

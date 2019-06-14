@@ -9,6 +9,7 @@
 #include <string>
 #include "../../../dao/seat_dao.h"
 #include "../../../dao/menu_dao.h"
+#include "../../../dao/cargo_dao.h"
 #include "../../../rmshandler.h"
 
 class TestRMSHandler: public ::testing::Test
@@ -29,6 +30,7 @@ protected:
       query = new QSqlQuery(*mydb);
       seatDao = new SeatDao(query,mydb);
       menuDao = new MenuDao(query,mydb);
+      cargoDao = new CargoDao(query,mydb);
   }
 
   void TearDown() override{
@@ -39,11 +41,12 @@ protected:
   QSqlQuery * query;
   SeatDao * seatDao;
   MenuDao * menuDao;
+  CargoDao * cargoDao;
 };
 
 TEST_F(TestRMSHandler, showSeatList)
 {
-    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao);
+    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao,cargoDao);
     rmsHandler->refreshSeatList();
     std::map<int,Seat *> * seats = rmsHandler->showSeatList();
     ASSERT_EQ(true,(*seats)[1]->isUsed());
@@ -52,7 +55,7 @@ TEST_F(TestRMSHandler, showSeatList)
 
 TEST_F(TestRMSHandler, showMenu)
 {
-    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao);
+    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao,cargoDao);
     rmsHandler->refreshMenu();
     std::map<int,Meal *> * mealList  = rmsHandler->showMenu();
     ASSERT_EQ(100,(*mealList)[1]->getPrice());
@@ -61,12 +64,20 @@ TEST_F(TestRMSHandler, showMenu)
 
 TEST_F(TestRMSHandler, order)
 {
-    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao);
+    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao,cargoDao);
+    rmsHandler->refreshCargoList();
+    rmsHandler->increaseCargoAmount(4,1);
+    rmsHandler->increaseCargoAmount(5,2);
+
     rmsHandler->refreshMenu();
     rmsHandler->refreshSeatList();
+    rmsHandler->refreshCargoList();
+
     rmsHandler->createOrder(3);
-    rmsHandler->enterOrderItem(4,1);
-    rmsHandler->enterOrderItem(5,2);
+    if(rmsHandler->checkCargoAmount(4,1))
+        rmsHandler->enterOrderItem(4,1);
+    if(rmsHandler->checkCargoAmount(5,2))
+        rmsHandler->enterOrderItem(5,2);
     ASSERT_EQ(260,rmsHandler->getAmount());
     rmsHandler->createBill();
     rmsHandler->pay(300);
@@ -79,38 +90,20 @@ TEST_F(TestRMSHandler, order)
 
     std::map<int,Seat *> * seats = rmsHandler->showSeatList();
     ASSERT_EQ(true,(*seats)[3]->isUsed());
+    rmsHandler->clearSeat(3);
 }
 
-TEST_F(TestRMSHandler, createMeal)
-{
-    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao);
-    bool result = false;
+TEST_F(TestRMSHandler, orderForAmountNotEnough){
+    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao,cargoDao);
+
     rmsHandler->refreshMenu();
-    QString qstrName = "咖哩飯";
-    QString qstrDescription = "咖哩粉加飯";
-    result = rmsHandler->createMeal(qstrName,qstrDescription,70);
-    ASSERT_EQ(true,result);
+    rmsHandler->refreshSeatList();
+    rmsHandler->refreshCargoList();
+
+    rmsHandler->createOrder(3);
+    ASSERT_EQ(false,rmsHandler->checkCargoAmount(4,2));
 
 }
 
-TEST_F(TestRMSHandler, editMeal)
-{
-    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao);
-    bool result = false;
-    rmsHandler->refreshMenu();
-    QString qstrName = "炸雞";
-    QString qstrDescription = "麵包粉加雞";
-    result = rmsHandler->editMeal(11,qstrName,qstrDescription,50);
-    ASSERT_EQ(true,result);
-}
-
-TEST_F(TestRMSHandler, deleteMeal)
-{
-    RMSHandler * rmsHandler = new RMSHandler(seatDao,menuDao);
-    bool result = false;
-    rmsHandler->refreshMenu();
-    result = rmsHandler->deleteMeal(11);
-    ASSERT_EQ(true,result);
-}
 
 #endif // TEST_RMS_HANDLER_H

@@ -419,7 +419,7 @@ debug/gmock-all.o: ../googletest-master/googlemock/src/gmock-all.cc ../googletes
 		../googletest-master/googlemock/src/gmock.cc
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\gmock-all.o ..\googletest-master\googlemock\src\gmock-all.cc
 
-debug/main.o: ../rms_test/main.cpp ../rms_test/test_controller/test_boss_handler.h \
+debug/main.o: ../rms_test/main.cpp ../rms_test/test_domain/test_menu.h \
 		../googletest-master/googletest/include/gtest/gtest.h \
 		../googletest-master/googletest/include/gtest/internal/gtest-internal.h \
 		../googletest-master/googletest/include/gtest/internal/gtest-port.h \
@@ -445,6 +445,22 @@ debug/main.o: ../rms_test/main.cpp ../rms_test/test_controller/test_boss_handler
 		../googletest-master/googlemock/include/gmock/internal/gmock-port.h \
 		../googletest-master/googlemock/include/gmock/internal/custom/gmock-port.h \
 		../googletest-master/googlemock/include/gmock/internal/custom/gmock-matchers.h \
+		../../domain/meal.h \
+		../../domain/menu.h \
+		../rms_test/test_usecase/test_manage_order.h \
+		../../usecase/manage_order.h \
+		../../domain/seat_list.h \
+		../../domain/seat.h \
+		../../domain/seat_order_list.h \
+		../../domain/seat_order.h \
+		../../domain/order_item.h \
+		../../domain/meal_list.h \
+		../../domain/order.h \
+		../../domain/bill.h \
+		../../domain/receipt.h \
+		../../domain/order_pair.h \
+		../rms_test/test_dao/test_menu_dao.h \
+		../../dao/menu_dao.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qtsqlglobal.h \
@@ -480,15 +496,117 @@ debug/main.o: ../rms_test/main.cpp ../rms_test/test_controller/test_boss_handler
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringalgorithms.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringview.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QString \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlquery.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QDebug \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qdebug.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qalgorithms.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qhash.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qiterator.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qlist.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qpair.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringlist.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qregexp.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmap.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qtextstream.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qiodevice.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobject.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcoreevent.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmetatype.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobject_impl.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qlocale.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvariant.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qshareddata.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvector.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qpoint.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qset.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qsharedpointer_impl.h \
+		../rms_test/test_dao/test_seat_dao.h \
+		../../dao/seat_dao.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqltablemodel.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlquerymodel.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlError \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlerror.h \
-		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QString \
-		../../dao/menu_dao.h \
-		../../domain/meal.h \
-		../../boss_handler.h \
-		../../domain/menu.h
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/QSqlRecord \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlrecord.h \
+		../rms_test/test_controller/test_rms_handler.h \
+		../../dao/cargo_dao.h \
+		../../domain/cargo.h \
+		../../rmshandler.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtWidgets/QApplication \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtWidgets/qapplication.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qtguiglobal.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qtgui-config.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtWidgets/qtwidgets-config.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qeventloop.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qsize.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qcursor.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtWidgets/qwidget.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmargins.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qpaintdevice.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qrect.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qpalette.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qcolor.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qrgb.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qrgba64.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qbrush.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qmatrix.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qpolygon.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qregion.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qline.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qtransform.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qpainterpath.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qimage.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qpixelformat.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qpixmap.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qfont.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qfontmetrics.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qfontinfo.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qkeysequence.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qevent.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qurl.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qurlquery.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qfile.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qfiledevice.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qvector2d.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qtouchdevice.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qguiapplication.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtGui/qinputmethod.h \
+		../../socket.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/QTcpServer \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qtcpserver.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qtnetworkglobal.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qtnetwork-config.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qabstractsocket.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qhostaddress.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/QTcpSocket \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtNetwork/qtcpsocket.h \
+		../../domain/warehouse.h \
+		../rms_test/test_domain/test_cargo.h \
+		../rms_test/test_domain/test_warehouse.h \
+		../rms_test/test_dao/test_cargo_dao.h \
+		../rms_test/test_controller/test_boss_handler.h \
+		../../boss_handler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\rms_test\main.cpp
 
 debug/manage_order.o: ../../usecase/manage_order.cpp ../../usecase/manage_order.h \
@@ -861,6 +979,8 @@ debug/rmshandler.o: ../../rmshandler.cpp ../../rmshandler.h \
 		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtSql/qsqlrecord.h \
 		../../domain/seat.h \
 		../../domain/order_pair.h \
+		../../dao/cargo_dao.h \
+		../../domain/cargo.h \
 		../../domain/seat_list.h \
 		../../domain/menu.h \
 		../../domain/order.h \
@@ -868,7 +988,9 @@ debug/rmshandler.o: ../../rmshandler.cpp ../../rmshandler.h \
 		../../domain/bill.h \
 		../../domain/receipt.h \
 		../../domain/seat_order_list.h \
-		../../domain/seat_order.h
+		../../domain/seat_order.h \
+		../../domain/warehouse.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\rmshandler.o ..\..\rmshandler.cpp
 
 debug/socket.o: ../../socket.cpp ../../socket.h \
@@ -1079,7 +1201,71 @@ debug/cargo_dao.o: ../../dao/cargo_dao.cpp ../../dao/cargo_dao.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\cargo_dao.o ..\..\dao\cargo_dao.cpp
 
 debug/warehouse.o: ../../domain/warehouse.cpp ../../domain/warehouse.h \
-		../../domain/cargo.h
+		../../domain/cargo.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/QDebug \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qdebug.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qalgorithms.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qglobal.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qconfig.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qtcore-config.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qsysinfo.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qlogging.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qflags.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qatomic.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qatomic_msvc.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmutex.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qnumeric.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qversiontagging.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qhash.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qchar.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qiterator.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qlist.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qrefcount.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qarraydata.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstring.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qbytearray.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qnamespace.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringliteral.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringview.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qpair.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringlist.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qregexp.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmap.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qtextstream.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qiodevice.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobject.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcoreevent.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qmetatype.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qobject_impl.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qlocale.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvariant.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qshareddata.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qvector.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qpoint.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qset.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/Qt5.12.1/5.12.1/mingw73_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\warehouse.o ..\..\domain\warehouse.cpp
 
 debug/boss_handler.o: ../../boss_handler.cpp ../../boss_handler.h \

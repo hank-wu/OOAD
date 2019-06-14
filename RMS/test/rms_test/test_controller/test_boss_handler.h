@@ -100,10 +100,10 @@ TEST_F(TestBossHandler, deleteMeal)
     deleteResult = bossHandler->deleteMeal(it->first);
 
     ASSERT_EQ(true,deleteResult);
-    for(it=mealList->begin();it != mealList->end();it++){
-        qDebug()<<it->first;
-        qDebug()<<QString::fromLocal8Bit(it->second->getName().c_str());
-    }
+//    for(it=mealList->begin();it != mealList->end();it++){
+//        qDebug()<<it->first;
+//        qDebug()<<QString::fromLocal8Bit(it->second->getName().c_str());
+//    }
     ASSERT_EQ(preSize-1,mealList->size());
 }
 

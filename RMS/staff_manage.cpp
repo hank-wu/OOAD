@@ -10,6 +10,7 @@ StaffManage::StaffManage(QWidget *parent, RMSHandler *rmsHandler) :
     _rmsHandler(rmsHandler)
 {
     ui->setupUi(this);
+    ui->removeButton->setVisible(false);
     _rmsHandler->refreshMenu();
     _rmsHandler->refreshSeatOrderList();
 
