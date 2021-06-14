@@ -58,7 +58,7 @@ source code:
 https://github.com/hank-wu/OOAD/tree/jp_introduction/RMS
 
 # Unit test result
-![Run All test](/image/add_test.png)
+![Run All test](/image/all_test.png)
 
 ![Example test code](/image/testSourceCode.png)
 
