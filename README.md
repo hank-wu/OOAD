@@ -23,9 +23,11 @@
 
 # Demo figure
 店員の画面
+
 ![emplyee Screenshot](/image/employeeScreenshot.png)
 
 客様の画面
+
 ![clent Screenshot](/image/ClientScreenshot.png)
 店員と客様のソフトウェアがsocketで繋がっている。
 
