@@ -17,11 +17,21 @@
 
 
 # Use Case Diagram
-
+![Use Case Diagram](/image/Use_Case_Diagram.png)
 # Use Case
+![Use Case](/image/Use_Case.png)
 
 # Demo figure
+店員の画面
+![emplyee Screenshot](/image/employeeScreenshot.png)
 
+客様の画面
+![clent Screenshot](/image/ClientScreenshot.png)
+店員と客様のソフトウェアがsocketで繋がっている。
+
+
+オーナの画面
+![Boss Screenshot](/image/boss_screenshot.png)
 # Domain model
 ![Domain_model](/image/Domain_model.png)
 # Class Diagram
@@ -29,13 +39,29 @@
 # Logical Architecture
 ![logical_architecture](/image/logical_architecture.png)
 # Sequence Diagram
+UC1
+
+![UC1](/image/uc01.png)
+
+
+UC1のcomplete orderの操作の詳細
+![UC1 complete order](/image/uc01-completeOrder.png)
 
 # Source code of significant
 ![Get Receipe](/image/getReceipt.png)
+
+source code:
+https://github.com/hank-wu/OOAD/tree/jp_introduction/RMS
+
 # Unit test result
 ![Run All test](/image/runAlltest.png)
 
 ![Example test code](/image/testSourceCode.png)
+
+source code of unit test:
+https://github.com/hank-wu/OOAD/tree/jp_introduction/RMS/test/rms_test
+
+
 # Project information
 ![Project information](/image/project_image.png)
 #
@@ -47,6 +73,9 @@ C++
 Qt5.12
 ### 環境
 Win10
+### ツール
+sqlite db
+
 
 # インストールと起動の手続き
 Qt editorで実行
