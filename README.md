@@ -29,6 +29,8 @@
 客様の画面
 
 ![clent Screenshot](/image/ClientScreenshot.png)
+
+
 店員と客様のソフトウェアがsocketで繋がっている。
 
 
