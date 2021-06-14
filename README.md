@@ -51,6 +51,10 @@ UC1
 UC1のcomplete orderの操作の詳細
 ![UC1 complete order](/image/uc01-completeOrder.png)
 
+他のuse-case
+
+https://github.com/hank-wu/OOAD/tree/jp_introduction/image/use-case
+
 # Source code of significant
 ![Get Receipe](/image/getReceipt.png)
 
