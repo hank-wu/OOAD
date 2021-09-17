@@ -3,13 +3,25 @@
 #### タームプロジェクト
 
 # 目標
-オブジェクト指向分析設計というソフトウェア開発でよく使われる方法を実際に使う。
-解決したい問題からuse-caseを定義する。
-問題に対するステム化の対象となる領域（問題領域; problem domain）を対象とし、分析して概念モデル(domain model) を作る。
 
-概念モデルを原型としてソフトウェアを設計します。統一モデリング言語（UML）を使ってclass diagram, sequence diagram 作り、use-caseを満足するソフトウェアの設計図を作り出す。
+オブジェクト指向分析設計というソフトウェア開発でよく使われる方法を実際に使ってプロジェクトを行う
 
-開発はなるべくテスト駆動開発（TDD）で進め。
+# 開発フロー
+
+１．解決したい問題から use-case を定義する。
+
+２．問題に対するステム化の対象となる領域（問題領域; problem domain）を対象とし、分析してドメインモデル(domain model) を作る。
+
+３．概念モデルを原型としてソフトウェアを設計します。統一モデリング言語（UML）を使ってclass diagram, sequence diagram 作り、use-case を満足するソフトウェアの設計図を作り出す。
+
+# リファレンス
+
+GRASP パターン：https://qiita.com/Yahagi_pg/items/0bb484f3c25fb9f84be8
+
+元の中国語の仕様書：
+https://drive.google.com/file/d/1udEtoYOaiAE9D-xkcSPTt1PlrqAPgduG/view?usp=sharing
+
+
 
 # Problem statement
 
@@ -20,6 +32,8 @@
 ![Use Case Diagram](/image/Use_Case_Diagram.png)
 # Use Case
 ![Use Case](/image/Use_Case.png)
+
+
 
 # Demo figure
 店員の画面
