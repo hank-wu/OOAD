@@ -57,6 +57,11 @@ https://drive.google.com/file/d/1udEtoYOaiAE9D-xkcSPTt1PlrqAPgduG/view?usp=shari
 # Logical Architecture
 ![logical_architecture](/image/logical_architecture.png)
 # Sequence Diagram
+
+UC1のuse case詳細
+
+![UC1 use case](/image/use_case_scenario.png)
+
 UC1
 
 ![UC1](/image/uc01.png)
